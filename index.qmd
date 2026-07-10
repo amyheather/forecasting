@@ -79,12 +79,14 @@ Before fitting complex models, you should establish a **naive benchmark**, which
 
 These benchmarks are also used as the reference for scaled error metrics (e.g., MASE).
 
-## Evaluating forecast accuracy: forecast error
+## Evaluating forecast accuracy: point forecast error
 
 We will evaluate the accuracy of forecasts from each model to decide which is best. This is done by measuring the difference between:
 
 * The model's predictions (ŷ) (also written as "Y hat" or `y_hat`).
 * The actual observed values (y).
+
+These errors use the **point forecast** - a single estimated value for a future event (as opposed to prediction intervals, covered below).
 
 ### Scale-dependent errors
 
@@ -147,6 +149,34 @@ Proposed by Hyndman & Koehler (2006) as an alternative to percentage errors when
 * ❌ Requires in-sample data (i.e., data used for model fitting) to calculate the naive forecast error.
 
 ## Evaluating forecast accuracy: prediction intervals
+
+<span class="source-note">Sources: @monks_intro_to_forecasting, @monks_winkler, @hyndman_toolbox</span>
+
+A **prediction interval** is the range that we expect to contain the true value, with some confidence (e.g., 95%). They express the **uncertainty** in forecasts. There are various methods used to calculate prediction intervals. We can evaluate *how good the prediction intervals are* - the **prediction interval (distributional) forecast accuracy**.
+
+**Empirical coverage** - the proportion of actual values that fell inside the predicted interval.
+
+* ✅ Simple and intuitive.
+* ❌ Says nothing about how *wide* the interval is - a model with huge intervals could have near 100% coverage while being useless in practice.
+
+**Absolute coverage difference (ACD)** - compare actual achieved coverage (e.g., 93%) against target coverage (e.g., 95%) and take the absolute difference (e.g., 0.02).
+
+* ✅ Intuitive.
+* ❌ Still says nothing about interval width.
+* ❌ Symmetric - don't know if it was too narrow (overconfident) or too wide (underconfident). Overconfidence is usually the more serious problem.
+
+**Winkler score (or interval score)** - evaluates the quality of prediction intervals by balancing the interval width (narrow intervals are more useful) and coverage accuracy (ensuring observations stay within the predicted range). The score is the width of the prediction interval, plus a penalty that is applied if the observation falls outside the preidction interval. The penalty is proportional tot he deviation.
+
+* ✅ Balances width and accuracy. Proper scoring rule - i.e., can't improve expected score by deliberately widening or narrowing the interval.
+* ❌ Scale-dependent.
+* ❌ Hard to interpret on it's own - only makes sense relative to other scores on the same series.
+
+**Scaled interval score** - the average Winkler score divided by the one-step in-sample Naïve1 or SNaïve.
+
+* ✅ Scale-independent.
+* ✅ Benchmarks against a naive forecast, so a score below 1 tells you the model's intervals genuinely outperform a naive interval.
+* ❌ Requires in-sample data to compute the naive benchmark.
+* ❌ If in-sample naive error is very small or close to zero, the scaled score can be unstable or misleadingly large.
 
 ## Evaluating forecast accuracy: data sets
 
