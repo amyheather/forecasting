@@ -150,28 +150,36 @@ Proposed by Hyndman & Koehler (2006) as an alternative to percentage errors when
 
 ## Evaluating forecast accuracy: prediction intervals
 
-<span class="source-note">Sources: @monks_intro_to_forecasting, @monks_winkler, @hyndman_toolbox</span>
+<span class="source-note">Sources: @monks_intro_to_forecasting, @monks_winkler, @monks_prediction, @hyndman_toolbox</span>
 
 A **prediction interval** is the range that we expect to contain the true value, with some confidence (e.g., 95%). They express the **uncertainty** in forecasts. There are various methods used to calculate prediction intervals. We can evaluate *how good the prediction intervals are* - the **prediction interval (distributional) forecast accuracy**.
 
-**Empirical coverage** - the proportion of actual values that fell inside the predicted interval.
+### Empirical coverage
+
+The proportion of actual values that fell inside the predicted interval.
 
 * ✅ Simple and intuitive.
 * ❌ Says nothing about how *wide* the interval is - a model with huge intervals could have near 100% coverage while being useless in practice.
 
-**Absolute coverage difference (ACD)** - compare actual achieved coverage (e.g., 93%) against target coverage (e.g., 95%) and take the absolute difference (e.g., 0.02).
+### Absolute coverage difference (ACD)
+
+Compare actual achieved coverage (e.g., 93%) against target coverage (e.g., 95%) and take the absolute difference (e.g., 0.02).
 
 * ✅ Intuitive.
 * ❌ Still says nothing about interval width.
 * ❌ Symmetric - don't know if it was too narrow (overconfident) or too wide (underconfident). Overconfidence is usually the more serious problem.
 
-**Winkler score (or interval score)** - evaluates the quality of prediction intervals by balancing the interval width (narrow intervals are more useful) and coverage accuracy (ensuring observations stay within the predicted range). The score is the width of the prediction interval, plus a penalty that is applied if the observation falls outside the preidction interval. The penalty is proportional tot he deviation.
+### Winkler score (or interval score)
+
+Evaluates the quality of prediction intervals by balancing the interval width (narrow intervals are more useful) and coverage accuracy (ensuring observations stay within the predicted range). The score is the width of the prediction interval, plus a penalty that is applied if the observation falls outside the preidction interval. The penalty is proportional tot he deviation.
 
 * ✅ Balances width and accuracy. Proper scoring rule - i.e., can't improve expected score by deliberately widening or narrowing the interval.
 * ❌ Scale-dependent.
 * ❌ Hard to interpret on it's own - only makes sense relative to other scores on the same series.
 
-**Scaled interval score** - the average Winkler score divided by the one-step in-sample Naïve1 or SNaïve.
+### Scaled interval score
+
+The average Winkler score divided by the one-step in-sample Naïve1 or SNaïve.
 
 * ✅ Scale-independent.
 * ✅ Benchmarks against a naive forecast, so a score below 1 tells you the model's intervals genuinely outperform a naive interval.
@@ -179,6 +187,47 @@ A **prediction interval** is the range that we expect to contain the true value,
 * ❌ If in-sample naive error is very small or close to zero, the scaled score can be unstable or misleadingly large.
 
 ## Evaluating forecast accuracy: data sets
+
+### Train-test split
+
+<span class="source-note">Source: @monks_intro_to_forecasting</span>
+
+Split the data into a training set (used to fit the model) and a test set (used to evaluate it).
+
+* ✅ Simple.
+* ✅ Doesn't need much data.
+* ❌ Gives only a single estimate of forecast error.
+* ❌ Repeated model selection on the same test set can cause overfitting on that particular held-out period.
+
+> **What is overfitting?** Overfitting is a problem that occurs when an algorithm learns the training data "too well". This means it performs very well on training training data, but poorly on new unseen data.
+
+### Train-validation-test-split
+
+<span class="source-note">Source: @monks_intro_to_forecasting</span>
+
+Add a validation set between training and test. The validation set is used to select and tune your model, then the final error estimate is reported on the untouched test set.
+
+* ✅ Test set is only used once, giving a fairer estimate of real world error.
+* ❌ Gives only a single estimate of forecast error.
+* ❌ Requires a longer time series.
+
+### Cross-validation with rolling forecast origin
+
+<span class="source-note">Source: @monks_intro_to_forecasting</span>
+
+Instead of one split, you create many overlapping sets of train/test or train/validation/test splits by repeatedly moving the "origin" point forward through the data.
+
+* ✅ Many error estimates, not just one, giving a more reliable picture of model performance.
+
+![Cross-validation with rolling forecast origin. Image from @monks_intro_to_forecasting (CC-BY).](images/rolling_forecast_origin.png)
+
+### Cross-validation with sliding window (fixed train size)
+
+<span class="source-note">Source: @monks_intro_to_forecasting, @monks_crossvalidation</span>
+
+A variant where instead of expanding the training window, you slide a fixed-size window forward, so older data is dropped from training as new data is added. Useful when you believe very old data is less relevant.
+
+![Cross-validation with sliding window. Image from @monks_intro_to_forecasting (CC-BY).](images/sliding_window.png)
 
 ## Transformations
 
