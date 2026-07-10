@@ -143,7 +143,7 @@ div.csl-indent {
   <li><a href="#autocorrelation" id="toc-autocorrelation" class="nav-link" data-scroll-target="#autocorrelation">Autocorrelation</a></li>
   </ul></li>
   <li><a href="#naive-benchmark-models" id="toc-naive-benchmark-models" class="nav-link" data-scroll-target="#naive-benchmark-models">Naive benchmark models</a></li>
-  <li><a href="#evaluating-forecast-accuracy-forecast-error" id="toc-evaluating-forecast-accuracy-forecast-error" class="nav-link" data-scroll-target="#evaluating-forecast-accuracy-forecast-error">Evaluating forecast accuracy: forecast error</a>
+  <li><a href="#evaluating-forecast-accuracy-point-forecast-error" id="toc-evaluating-forecast-accuracy-point-forecast-error" class="nav-link" data-scroll-target="#evaluating-forecast-accuracy-point-forecast-error">Evaluating forecast accuracy: point forecast error</a>
   <ul class="collapse">
   <li><a href="#scale-dependent-errors" id="toc-scale-dependent-errors" class="nav-link" data-scroll-target="#scale-dependent-errors">Scale-dependent errors</a></li>
   <li><a href="#percentagerelative-errors" id="toc-percentagerelative-errors" class="nav-link" data-scroll-target="#percentagerelative-errors">Percentage/relative errors</a></li>
@@ -241,7 +241,7 @@ div.csl-indent {
 </section>
 <section id="naive-benchmark-models" class="level2">
 <h2 class="anchored" data-anchor-id="naive-benchmark-models">Naive benchmark models</h2>
-<p><span class="source-note">Sources: <span class="citation" data-cites="monks_intro_to_forecasting">Monks (<a href="#ref-monks_intro_to_forecasting" role="doc-biblioref">2020a</a>)</span>, <span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2018</a>)</span></span></p>
+<p><span class="source-note">Sources: <span class="citation" data-cites="monks_intro_to_forecasting">Monks (<a href="#ref-monks_intro_to_forecasting" role="doc-biblioref">2020a</a>)</span>, <span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2021</a>)</span></span></p>
 <p>Before fitting complex models, you should establish a <strong>naive benchmark</strong>, which is a simple forecast that your complex models should beat. Common benchmarks include:</p>
 <ul>
 <li><strong>Naïve (Naïve1)</strong>: Carry the last observed vale forward.</li>
@@ -251,16 +251,17 @@ div.csl-indent {
 </ul>
 <p>These benchmarks are also used as the reference for scaled error metrics (e.g., MASE).</p>
 </section>
-<section id="evaluating-forecast-accuracy-forecast-error" class="level2">
-<h2 class="anchored" data-anchor-id="evaluating-forecast-accuracy-forecast-error">Evaluating forecast accuracy: forecast error</h2>
+<section id="evaluating-forecast-accuracy-point-forecast-error" class="level2">
+<h2 class="anchored" data-anchor-id="evaluating-forecast-accuracy-point-forecast-error">Evaluating forecast accuracy: point forecast error</h2>
 <p>We will evaluate the accuracy of forecasts from each model to decide which is best. This is done by measuring the difference between:</p>
 <ul>
 <li>The model’s predictions (ŷ) (also written as “Y hat” or <code>y_hat</code>).</li>
 <li>The actual observed values (y).</li>
 </ul>
+<p>These errors use the <strong>point forecast</strong> - a single estimated value for a future event (as opposed to prediction intervals, covered below).</p>
 <section id="scale-dependent-errors" class="level3">
 <h3 class="anchored" data-anchor-id="scale-dependent-errors">Scale-dependent errors</h3>
-<p><span class="source-note">Sources: <span class="citation" data-cites="suleman_metrics">Suleman (<a href="#ref-suleman_metrics" role="doc-biblioref">2024</a>)</span>, <span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2018</a>)</span></span></p>
+<p><span class="source-note">Sources: <span class="citation" data-cites="suleman_metrics">Suleman (<a href="#ref-suleman_metrics" role="doc-biblioref">2024</a>)</span>, <span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2021</a>)</span></span></p>
 <p>These measures are scale-dependent, meaning that forecast errors are on the same scale as the data, and they cannot be used to make comparisons between series that involve different units.</p>
 <p><strong>Mean absolute error (MAE)</strong> - average of the absolute differences between the actual and predicted values.</p>
 <ul>
@@ -283,7 +284,7 @@ div.csl-indent {
 </section>
 <section id="percentagerelative-errors" class="level3">
 <h3 class="anchored" data-anchor-id="percentagerelative-errors">Percentage/relative errors</h3>
-<p><span class="source-note">Sources: <span class="citation" data-cites="suleman_metrics">Suleman (<a href="#ref-suleman_metrics" role="doc-biblioref">2024</a>)</span>, <span class="citation" data-cites="lewinson_mape">Wikipedia (<a href="#ref-lewinson_mape" role="doc-biblioref">2025</a>)</span>, <span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2018</a>)</span></span></p>
+<p><span class="source-note">Sources: <span class="citation" data-cites="suleman_metrics">Suleman (<a href="#ref-suleman_metrics" role="doc-biblioref">2024</a>)</span>, <span class="citation" data-cites="lewinson_mape">Wikipedia (<a href="#ref-lewinson_mape" role="doc-biblioref">2025</a>)</span>, <span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2021</a>)</span></span></p>
 <p>These measures are scale-independent, making them useful for comparing across datasets.</p>
 <p><strong>Mean absolute percentage error (MAPE)</strong> - average of the absolute percentage errors between the actual and predicted values. Expresses the error as a percentage.</p>
 <ul>
@@ -305,7 +306,7 @@ div.csl-indent {
 </section>
 <section id="scaled-errors" class="level3">
 <h3 class="anchored" data-anchor-id="scaled-errors">Scaled errors</h3>
-<p><span class="source-note">Sources: <span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2018</a>)</span>, <span class="citation" data-cites="lewinson_mape">Wikipedia (<a href="#ref-lewinson_mape" role="doc-biblioref">2025</a>)</span>, <span class="citation" data-cites="suleman_metrics">Suleman (<a href="#ref-suleman_metrics" role="doc-biblioref">2024</a>)</span></span></p>
+<p><span class="source-note">Sources: <span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2021</a>)</span>, <span class="citation" data-cites="lewinson_mape">Wikipedia (<a href="#ref-lewinson_mape" role="doc-biblioref">2025</a>)</span>, <span class="citation" data-cites="suleman_metrics">Suleman (<a href="#ref-suleman_metrics" role="doc-biblioref">2024</a>)</span></span></p>
 <p>Proposed by Hyndman &amp; Koehler (2006) as an alternative to percentage errors when comparing forecast accuracy across series with different units.</p>
 <p><strong>Mean absolute scaled error (MASE)</strong> - the MAE of the forecast values divided by the MAE of the in-sample one-step naive forecast (Naïve1).</p>
 <ul>
@@ -317,13 +318,39 @@ div.csl-indent {
 </section>
 <section id="evaluating-forecast-accuracy-prediction-intervals" class="level2">
 <h2 class="anchored" data-anchor-id="evaluating-forecast-accuracy-prediction-intervals">Evaluating forecast accuracy: prediction intervals</h2>
+<p><span class="source-note">Sources: <span class="citation" data-cites="monks_intro_to_forecasting">Monks (<a href="#ref-monks_intro_to_forecasting" role="doc-biblioref">2020a</a>)</span>, <span class="citation" data-cites="monks_winkler">Monks (<a href="#ref-monks_winkler" role="doc-biblioref">2025</a>)</span>, <span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2021</a>)</span></span></p>
+<p>A <strong>prediction interval</strong> is the range that we expect to contain the true value, with some confidence (e.g., 95%). They express the <strong>uncertainty</strong> in forecasts. There are various methods used to calculate prediction intervals. We can evaluate <em>how good the prediction intervals are</em> - the <strong>prediction interval (distributional) forecast accuracy</strong>.</p>
+<p><strong>Empirical coverage</strong> - the proportion of actual values that fell inside the predicted interval.</p>
+<ul>
+<li>✅ Simple and intuitive.</li>
+<li>❌ Says nothing about how <em>wide</em> the interval is - a model with huge intervals could have near 100% coverage while being useless in practice.</li>
+</ul>
+<p><strong>Absolute coverage difference (ACD)</strong> - compare actual achieved coverage (e.g., 93%) against target coverage (e.g., 95%) and take the absolute difference (e.g., 0.02).</p>
+<ul>
+<li>✅ Intuitive.</li>
+<li>❌ Still says nothing about interval width.</li>
+<li>❌ Symmetric - don’t know if it was too narrow (overconfident) or too wide (underconfident). Overconfidence is usually the more serious problem.</li>
+</ul>
+<p><strong>Winkler score (or interval score)</strong> - evaluates the quality of prediction intervals by balancing the interval width (narrow intervals are more useful) and coverage accuracy (ensuring observations stay within the predicted range). The score is the width of the prediction interval, plus a penalty that is applied if the observation falls outside the preidction interval. The penalty is proportional tot he deviation.</p>
+<ul>
+<li>✅ Balances width and accuracy. Proper scoring rule - i.e., can’t improve expected score by deliberately widening or narrowing the interval.</li>
+<li>❌ Scale-dependent.</li>
+<li>❌ Hard to interpret on it’s own - only makes sense relative to other scores on the same series.</li>
+</ul>
+<p><strong>Scaled interval score</strong> - the average Winkler score divided by the one-step in-sample Naïve1 or SNaïve.</p>
+<ul>
+<li>✅ Scale-independent.</li>
+<li>✅ Benchmarks against a naive forecast, so a score below 1 tells you the model’s intervals genuinely outperform a naive interval.</li>
+<li>❌ Requires in-sample data to compute the naive benchmark.</li>
+<li>❌ If in-sample naive error is very small or close to zero, the scaled score can be unstable or misleadingly large.</li>
+</ul>
 </section>
 <section id="evaluating-forecast-accuracy-data-sets" class="level2">
 <h2 class="anchored" data-anchor-id="evaluating-forecast-accuracy-data-sets">Evaluating forecast accuracy: data sets</h2>
 </section>
 <section id="transformations" class="level2">
 <h2 class="anchored" data-anchor-id="transformations">Transformations</h2>
-<p><span class="source-note">Sources: <span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2018</a>)</span>, <span class="citation" data-cites="monks_arima">Monks (<a href="#ref-monks_arima" role="doc-biblioref">2020b</a>)</span></span></p>
+<p><span class="source-note">Sources: <span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2021</a>)</span>, <span class="citation" data-cites="monks_arima">Monks (<a href="#ref-monks_arima" role="doc-biblioref">2020b</a>)</span></span></p>
 <p>Mathematical transformations are used to simplify the patterns in historical data to make forecasting simpler and more accurate. Any forecasts are produced on a transformed scale, so the data then has to be back-transformed.</p>
 <p>For example, if variation increases or decreases over time, a logarithmic transformation is often usedful. If log base 10 is used, then an increase of 1 on the log scale corresponds to a multiplication of 10 on the original scale.</p>
 </section>
@@ -337,13 +364,16 @@ Howell, Egor. 2022. <em>Autocorrelation for Time Series Analysis</em>. <a href="
 HSMA. 2024. <em>8B Forecasting: Part 1 - Intro to Forecasting</em>. <a href="https://github.com/hsma-programme/8b_forecasting/blob/main/HSMA%205%20Slides%20-%20Part%201%20-%20Intro%20to%20Forecasting.pdf">https://github.com/hsma-programme/8b_forecasting/blob/main/HSMA%205%20Slides%20-%20Part%201%20-%20Intro%20to%20Forecasting.pdf</a>.
 </div>
 <div id="ref-hyndman_toolbox" class="csl-entry" role="listitem">
-Hyndman, Rob., and George. Athanasopoulos. 2018. <span>“The Forecaster’s Toolbox.”</span> Chap. 2 in <em>Forecasting Principles and Practice</em>, 2nd ed. OTexts. <a href="https://otexts.com/fpp2/toolbox.html">https://otexts.com/fpp2/toolbox.html</a>.
+Hyndman, Rob., and George. Athanasopoulos. 2021. <span>“The Forecaster’s Toolbox.”</span> Chap. 5 in <em>Forecasting Principles and Practice</em>, 3rd ed. OTexts. <a href="https://otexts.com/fpp3/toolbox.html">https://otexts.com/fpp3/toolbox.html</a>.
 </div>
 <div id="ref-monks_intro_to_forecasting" class="csl-entry" role="listitem">
 Monks, Tom. 2020a. <em>An Introduction to Forecasting in Health</em>. <a href="https://docs.google.com/presentation/d/1zfTUgY7ysnt7zGA_ZJSANv3pxTBxsOoIqsJW-0hcj4s/">https://docs.google.com/presentation/d/1zfTUgY7ysnt7zGA_ZJSANv3pxTBxsOoIqsJW-0hcj4s/</a>.
 </div>
 <div id="ref-monks_arima" class="csl-entry" role="listitem">
 Monks, Tom. 2020b. <em>Modelling Health System Demand Using ARIMA</em>. <a href="https://docs.google.com/presentation/d/1CD5rWyjdhCcQDOYaAbhXlCE0ilZVBmq7dDL14IzIt5w">https://docs.google.com/presentation/d/1CD5rWyjdhCcQDOYaAbhXlCE0ilZVBmq7dDL14IzIt5w</a>.
+</div>
+<div id="ref-monks_winkler" class="csl-entry" role="listitem">
+Monks, Tom. 2025. <em>How to Evaluate Forecast Prediction Intervals with the Winkler Score</em>. <a href="https://github.com/TheOpenScienceNerd/winkler_score">https://github.com/TheOpenScienceNerd/winkler_score</a>.
 </div>
 <div id="ref-suleman_metrics" class="csl-entry" role="listitem">
 Suleman, Eshban. 2024. <em>Understanding Evaluation Metrics for Time Series Forecasting</em>. <a href="https://eshban9492.medium.com/understanding-evaluation-metrics-for-time-series-forecasting-5c8a3c877654">https://eshban9492.medium.com/understanding-evaluation-metrics-for-time-series-forecasting-5c8a3c877654</a>.
