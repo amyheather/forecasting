@@ -6,6 +6,20 @@ format:
     css: /style/page_style.css
 ---
 
+```{python}
+import pandas as pd
+from prophet import Prophet
+from prophet.plot import add_changepoints_to_plot
+```
+
+```{python}
+#| echo: false
+import logging
+logging.getLogger("prophet.plot").disabled = True
+```
+
+<br>
+
 <span class="source-note">Source: @prophet_home</span>
 
 Prophet is an easy-to-use open-source forecasting library available in Python and R, developed by Meta (Facebook).
@@ -39,7 +53,25 @@ Prophet supports two models for trend:
 
 **Logistic growth trend model**. This is used when there is a maximum value that can't be crossed (known as the "carrying capacity"). This model will start to flatten the trend as it approaches that value.
 
-![Saturating forecast from a logistic growth trend model. Image from @prophet_saturating](/images/saturating_forecast.png)
+<span class="source-note">Code source: @prophet_saturating</span>
+
+```{python}
+#| output: false
+df = pd.read_csv(
+  "https://raw.githubusercontent.com/facebook/prophet/" +
+  "main/examples/example_wp_log_R.csv"
+)
+df["cap"] = 8.5
+m = Prophet(growth="logistic")
+m.fit(df)
+future = m.make_future_dataframe(periods=1826)
+future["cap"] = 8.5
+forecast = m.predict(future)
+```
+
+```{python}
+fig = m.plot(forecast)
+```
 
 ### Trend changepoints
 
@@ -56,6 +88,25 @@ Prophet detects these automatically by testing many possible points, and keeping
 3. What remains are the changepoints with a meaningfully large rate of change.
 
 This is a Bayesian approach: rather than deciding in advance how many changepoints are real, Prophet starts with a prior belief (most changepoints don't matter) and updates it using the data. The Laplace prior is closely related to L1 regularisation (as in Lasso regression). Both shrink small, uncertain effects toward zero while leaving large, well-supported effects largely intact. In practice, most potential changepoints end up negligible, and only a handful with strong evidence shape the trend, preventing it from reacting to minor fluctuations.
+
+<span class="source-note">Code source: @prophet_start, @prophet_changepoints</span>
+
+```{python}
+#| output: false
+df = pd.read_csv(
+  "https://raw.githubusercontent.com/facebook/prophet/" +
+  "main/examples/example_wp_log_peyton_manning.csv"
+)
+m = Prophet()
+m.fit(df)
+future = m.make_future_dataframe(periods=365)
+forecast = m.predict(future)
+```
+
+```{python}
+fig = m.plot(forecast)
+a = add_changepoints_to_plot(fig.gca(), m, forecast)
+```
 
 #### Adjusting the trend
 
