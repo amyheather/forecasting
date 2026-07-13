@@ -23,3 +23,4 @@ format:
     theme: [simplex, style/theme.scss]
     css: style/style.css
     toc: true
+    title-block-banner: images/banner.png
