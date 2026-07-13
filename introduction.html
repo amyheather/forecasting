@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Forecasting in Python</title>
+<title>Introduction – Forecasting in Python</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -96,17 +96,10 @@ div.csl-indent {
 background-size: cover;
       }
 </style>
-<style>
-h1 {
-  text-align: center;
-}
-p.subtitle.lead {
-  text-align: center;
-}
-</style>
 
 
 <link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="./style/page_style.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -142,7 +135,7 @@ p.subtitle.lead {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Forecasting in Python</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Introduction</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -151,14 +144,13 @@ p.subtitle.lead {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-right">
-      <h1 class="title">Forecasting in Python</h1>
-            <p class="subtitle lead">A beginner-friendly introduction to time-series forecasting</p>
+    <div class="quarto-title column-body">
+      <h1 class="title">Introduction</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-right">
+  <div class="quarto-title-meta">
 
       
     
@@ -166,14 +158,14 @@ p.subtitle.lead {
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
@@ -212,36 +204,114 @@ p.subtitle.lead {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-forecasting" id="toc-what-is-forecasting" class="nav-link active" data-scroll-target="#what-is-forecasting">What is forecasting?</a></li>
+  <li><a href="#the-forecasting-process" id="toc-the-forecasting-process" class="nav-link" data-scroll-target="#the-forecasting-process">The forecasting process</a>
+  <ul class="collapse">
+  <li><a href="#steps-of-a-forecasting-project" id="toc-steps-of-a-forecasting-project" class="nav-link" data-scroll-target="#steps-of-a-forecasting-project">Steps of a forecasting project</a></li>
+  <li><a href="#questions-to-ask-when-defining-the-problem" id="toc-questions-to-ask-when-defining-the-problem" class="nav-link" data-scroll-target="#questions-to-ask-when-defining-the-problem">Questions to ask when defining the problem</a></li>
+  </ul></li>
+  <li><a href="#time-series-data" id="toc-time-series-data" class="nav-link" data-scroll-target="#time-series-data">Time series data</a>
+  <ul class="collapse">
+  <li><a href="#stationarity" id="toc-stationarity" class="nav-link" data-scroll-target="#stationarity">Stationarity</a></li>
+  <li><a href="#autocorrelation" id="toc-autocorrelation" class="nav-link" data-scroll-target="#autocorrelation">Autocorrelation</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-right" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<p><strong>Author:</strong> <a href="https://amyheather.github.io/">Amy Heather</a> <a href="https://orcid.org/0000-0002-6596-3479"><img src="./images/ORCIDiD_icon16x16.png" class="img-fluid" alt="ORCID logo"></a></p>
-<p>These are my own notes, written to consolidate my understanding as I learned this topic. They draw heavily on a handful of excellent existing resources. The key sources I used are:</p>
+<section id="what-is-forecasting" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-forecasting">What is forecasting?</h2>
+<p>Forecasting is the process of using historical data to make predictions about future values. It applies statistical models to historical patterns, and projects those patterns forwards in time.</p>
+</section>
+<section id="the-forecasting-process" class="level2">
+<h2 class="anchored" data-anchor-id="the-forecasting-process">The forecasting process</h2>
+<div class="h3-tight">
+
+</div>
+<section id="steps-of-a-forecasting-project" class="level3">
+<h3 class="anchored" data-anchor-id="steps-of-a-forecasting-project">Steps of a forecasting project</h3>
+<p><span class="source-note">Source: <span class="citation" data-cites="monks_intro_to_forecasting">Monks (<a href="#ref-monks_intro_to_forecasting" role="doc-biblioref">2020a</a>)</span></span></p>
+<ol type="1">
+<li><strong>Define the problem</strong> (what we are forecasting and how it will be used).</li>
+<li><strong>Collect time series data</strong></li>
+<li><strong>Explore and visulise the data</strong></li>
+<li><strong>Fit a range of candidate models</strong></li>
+<li><strong>Evaluate and choose the best models</strong> (using error metrics).</li>
+<li><strong>Generate the forecast</strong> (using the best model).</li>
+</ol>
+</section>
+<section id="questions-to-ask-when-defining-the-problem" class="level3">
+<h3 class="anchored" data-anchor-id="questions-to-ask-when-defining-the-problem">Questions to ask when defining the problem</h3>
+<p><span class="source-note">Sources: <span class="citation" data-cites="monks_intro_to_forecasting">Monks (<a href="#ref-monks_intro_to_forecasting" role="doc-biblioref">2020a</a>)</span>, <span class="citation" data-cites="hsma_intro_to_forecasting">HSMA (<a href="#ref-hsma_intro_to_forecasting" role="doc-biblioref">2024</a>)</span></span></p>
 <ul>
-<li><span class="citation" data-cites="monks_intro_to_forecasting">Monks (<a href="#ref-monks_intro_to_forecasting" role="doc-biblioref">2020a</a>)</span> — a general introduction to forecasting concepts and workflow.</li>
-<li><span class="citation" data-cites="monks_arima">Monks (<a href="#ref-monks_arima" role="doc-biblioref">2020b</a>)</span> — a focused walkthrough of ARIMA modelling.</li>
-<li><span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2021</a>)</span> — the standard toolbox reference for forecasting methods and best practice.</li>
-<li><span class="citation" data-cites="suleman_metrics">Suleman (<a href="#ref-suleman_metrics" role="doc-biblioref">2024</a>)</span> — a guide to forecast evaluation metrics.</li>
+<li><strong>What decisions will forecasting support?</strong> (e.g., short term operational? long term? future resource requirements?).</li>
+<li><strong>Do you need to forecast one quantity or many</strong> (i.e., total demand, v.s., demand broken down by age group or region).</li>
+<li><strong>How accurate does forecast need to be to support decisions?</strong></li>
+<li><strong>How far ahead do you need to forecast?</strong></li>
+<li><strong>What is the frequency of your data, and how often do you need new forecasts</strong> (i.e., cannot produce daily forecasts from monthly data).</li>
 </ul>
-<section id="references" class="level3">
-<h3 class="anchored" data-anchor-id="references">References</h3>
+</section>
+</section>
+<section id="time-series-data" class="level2">
+<h2 class="anchored" data-anchor-id="time-series-data">Time series data</h2>
+<p><span class="source-note">Source: <span class="citation" data-cites="monks_intro_to_forecasting">Monks (<a href="#ref-monks_intro_to_forecasting" role="doc-biblioref">2020a</a>)</span></span></p>
+<p>A times series is a sequence of observations recorded at regular intervals over time. Features of a time series:</p>
+<ul>
+<li><strong>Trend</strong> - the long-term underlying direction of values, independent of short-term fluctuations.</li>
+<li><strong>Seasonality</strong> - a repeating pattern at fixed times - e.g., high demand on weekends.</li>
+<li><strong>Mean</strong> - average level of the series.</li>
+<li><strong>Variance</strong> - how spread out the vales are around the mean.</li>
+</ul>
+<p>There are also two more complicated properties explained below:</p>
+<ul>
+<li><strong>Stationarity</strong></li>
+<li><strong>Autocorrelation</strong></li>
+</ul>
+<section id="stationarity" class="level3">
+<h3 class="anchored" data-anchor-id="stationarity">Stationarity</h3>
+<p><span class="source-note">Source: <span class="citation" data-cites="monks_arima">Monks (<a href="#ref-monks_arima" role="doc-biblioref">2020b</a>)</span></span></p>
+<p>A stationary time series has:</p>
+<ul>
+<li>No trend.</li>
+<li>No seasonality.</li>
+<li>Stable variance.</li>
+</ul>
+<p>This is uncommon for healthcare datasets.</p>
+</section>
+<section id="autocorrelation" class="level3">
+<h3 class="anchored" data-anchor-id="autocorrelation">Autocorrelation</h3>
+<p><span class="source-note">Source: <span class="citation" data-cites="tds_autocorrelation">Howell (<a href="#ref-tds_autocorrelation" role="doc-biblioref">2022</a>)</span></span></p>
+<p>Autocorrelation is the correlation of data with itself, at two different points in time (known as lags) - so we are measuring how a data point relates to its own past self at different lags.</p>
+<p>For example, if a busy Sunday is often be followed by a busy Monday.</p>
+<p>It can also be used to help detect seasonality.</p>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-hyndman_toolbox" class="csl-entry" role="listitem">
-Hyndman, Rob., and George. Athanasopoulos. 2021. <span>“The Forecaster’s Toolbox.”</span> Chap. 5 in <em>Forecasting Principles and Practice</em>, 3rd ed. OTexts. <a href="https://otexts.com/fpp3/toolbox.html">https://otexts.com/fpp3/toolbox.html</a>.
+<div id="ref-tds_autocorrelation" class="csl-entry" role="listitem">
+Howell, Egor. 2022. <em>Autocorrelation for Time Series Analysis</em>. <a href="https://towardsdatascience.com/autocorrelation-for-time-series-analysis-86e68e631f77/">https://towardsdatascience.com/autocorrelation-for-time-series-analysis-86e68e631f77/</a>.
+</div>
+<div id="ref-hsma_intro_to_forecasting" class="csl-entry" role="listitem">
+HSMA. 2024. <em>8B Forecasting: Part 1 - Intro to Forecasting</em>. <a href="https://github.com/hsma-programme/8b_forecasting/blob/main/HSMA%205%20Slides%20-%20Part%201%20-%20Intro%20to%20Forecasting.pdf">https://github.com/hsma-programme/8b_forecasting/blob/main/HSMA%205%20Slides%20-%20Part%201%20-%20Intro%20to%20Forecasting.pdf</a>.
 </div>
 <div id="ref-monks_intro_to_forecasting" class="csl-entry" role="listitem">
 Monks, Tom. 2020a. <em>An Introduction to Forecasting in Health</em>. <a href="https://docs.google.com/presentation/d/1zfTUgY7ysnt7zGA_ZJSANv3pxTBxsOoIqsJW-0hcj4s/">https://docs.google.com/presentation/d/1zfTUgY7ysnt7zGA_ZJSANv3pxTBxsOoIqsJW-0hcj4s/</a>.
 </div>
 <div id="ref-monks_arima" class="csl-entry" role="listitem">
 Monks, Tom. 2020b. <em>Modelling Health System Demand Using ARIMA</em>. <a href="https://docs.google.com/presentation/d/1CD5rWyjdhCcQDOYaAbhXlCE0ilZVBmq7dDL14IzIt5w">https://docs.google.com/presentation/d/1CD5rWyjdhCcQDOYaAbhXlCE0ilZVBmq7dDL14IzIt5w</a>.
-</div>
-<div id="ref-suleman_metrics" class="csl-entry" role="listitem">
-Suleman, Eshban. 2024. <em>Understanding Evaluation Metrics for Time Series Forecasting</em>. <a href="https://eshban9492.medium.com/understanding-evaluation-metrics-for-time-series-forecasting-5c8a3c877654">https://eshban9492.medium.com/understanding-evaluation-metrics-for-time-series-forecasting-5c8a3c877654</a>.
 </div>
 </div>
 

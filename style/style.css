@@ -44,3 +44,14 @@ h3 {
 h4 {
   margin-top: 1.5em;
 }
+
+/* Remove breaks */
+.h2-tight {
+  margin-bottom: -2em;
+}
+.h3-tight {
+  margin-bottom: -2em;
+}
+.h4-tight {
+  margin-bottom: -1.5em;
+}

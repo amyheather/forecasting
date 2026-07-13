@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://amyheather.github.io/forecasting/transformation.html</loc>
+    <lastmod>2026-07-13T09:19:03.243Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amyheather.github.io/forecasting/evaluation.html</loc>
+    <lastmod>2026-07-13T09:19:03.240Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amyheather.github.io/forecasting/introduction.html</loc>
+    <lastmod>2026-07-13T09:19:03.241Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amyheather.github.io/forecasting/arima.html</loc>
+    <lastmod>2026-07-13T09:19:03.240Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amyheather.github.io/forecasting/prophet.html</loc>
+    <lastmod>2026-07-13T09:19:03.241Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amyheather.github.io/forecasting/naive.html</loc>
+    <lastmod>2026-07-13T09:19:03.241Z</lastmod>
+  </url>
+  <url>
     <loc>https://amyheather.github.io/forecasting/index.html</loc>
-    <lastmod>2026-07-10T15:26:11.255Z</lastmod>
+    <lastmod>2026-07-13T09:19:03.241Z</lastmod>
   </url>
 </urlset>

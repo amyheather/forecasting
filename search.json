@@ -1,65 +1,163 @@
 [
   {
+    "objectID": "transformation.html",
+    "href": "transformation.html",
+    "title": "Transformation",
+    "section": "",
+    "text": "Sources: Hyndman and Athanasopoulos (2021), Monks (2020)\nMathematical transformations are used to simplify the patterns in historical data to make forecasting simpler and more accurate. Any forecasts are produced on a transformed scale, so the data then has to be back-transformed.\nFor example, if variation increases or decreases over time, a logarithmic transformation is often usedful. If log base 10 is used, then an increase of 1 on the log scale corresponds to a multiplication of 10 on the original scale.",
+    "crumbs": [
+      "GitHub",
+      "Transformation"
+    ]
+  },
+  {
+    "objectID": "transformation.html#references",
+    "href": "transformation.html#references",
+    "title": "Transformation",
+    "section": "References",
+    "text": "References\n\n\nHyndman, Rob., and George. Athanasopoulos. 2021. “The Forecaster’s Toolbox.” Chap. 5 in Forecasting Principles and Practice, 3rd ed. OTexts. https://otexts.com/fpp3/toolbox.html.\n\n\nMonks, Tom. 2020. Modelling Health System Demand Using ARIMA. https://docs.google.com/presentation/d/1CD5rWyjdhCcQDOYaAbhXlCE0ilZVBmq7dDL14IzIt5w.",
+    "crumbs": [
+      "GitHub",
+      "Transformation"
+    ]
+  },
+  {
+    "objectID": "evaluation.html",
+    "href": "evaluation.html",
+    "title": "Evaluating forecast accuracy",
+    "section": "",
+    "text": "We will evaluate the accuracy of forecasts from each model to decide which is best. This is done by measuring the difference between:\n\nThe model’s predictions (ŷ) (also written as “Y hat” or y_hat).\nThe actual observed values (y).\n\nThese errors use the point forecast - a single estimated value for a future event (as opposed to prediction intervals, covered below).\n\n\nSources: Suleman (2024), Hyndman and Athanasopoulos (2021)\nThese measures are scale-dependent, meaning that forecast errors are on the same scale as the data, and they cannot be used to make comparisons between series that involve different units.\nMean absolute error (MAE) - average of the absolute differences between the actual and predicted values.\n\n✅ Easy to understand and interpret.\n✅ Not sensitive to outliers.\n❌ Does not account for scale of the data.\n\nMean Squared Error (MSE) - average of squared differences between the actual and predicted values. It emphasises larger errors due to the squaring operation.\n\n✅ Penalises larger errors more than smaller errors, highlighting poor performance.\n❌ Sensitive to outliers.\n❌ Harder to interpret due to squaring.\n\nRoot mean squared error (RMSE) - square root of MSE. This means the error metric is on the same scale as the original data.\n\n✅ Same units as original data, so it’s interpretable.\n✅ Penalises larger errors more than smaller errors, highlighting poor performance.\n❌ Sensitive to outliers.\n\n\n\n\nSources: Suleman (2024), Wikipedia (2025), Hyndman and Athanasopoulos (2021)\nThese measures are scale-independent, making them useful for comparing across datasets.\nMean absolute percentage error (MAPE) - average of the absolute percentage errors between the actual and predicted values. Expresses the error as a percentage.\n\n✅ Scale-independent.\n✅ Easy to interpret as a percentage.\n❌ Can be biased if actual values are small.\n❌ Doesn’t work if actual values are zero.\n❌ Asymmetric, putting a heavier penalty on negative errors (when forecast is higher than actual) than on positive errors. This is because the percentage error can’t exceed 100% for forecasts that are too low, but there is no upper limit for forecasts that are too high.\n\nSymmetric MAPE (sMAPE) - modified version of MAPE that attempts to deal with the asymmetry, through having lower (0%) and upper (200%) bounds.\n\n✅ Scale-independent.\n✅ Fixes the asymmetry shortcoming of MAPE.\n❌ Less interpretable than MAPE.\n❌ Unstable when true value and forecast are close to zero.\n❌ Can take negative values, and range of 0 to 100% is difficult to interpret.\n\nHyndman & Koehler (2006) recommend that the sMAPE not be used.\n\n\n\nSources: Hyndman and Athanasopoulos (2021), Wikipedia (2025), Suleman (2024)\nProposed by Hyndman & Koehler (2006) as an alternative to percentage errors when comparing forecast accuracy across series with different units.\nMean absolute scaled error (MASE) - the MAE of the forecast values divided by the MAE of the in-sample one-step naive forecast (Naïve1).\n\n✅ Scale-independent.\n✅ Symmetric.\n❌ Requires in-sample data (i.e., data used for model fitting) to calculate the naive forecast error.",
+    "crumbs": [
+      "GitHub",
+      "Evaluating forecast accuracy"
+    ]
+  },
+  {
+    "objectID": "evaluation.html#point-forecast-error",
+    "href": "evaluation.html#point-forecast-error",
+    "title": "Evaluating forecast accuracy",
+    "section": "",
+    "text": "We will evaluate the accuracy of forecasts from each model to decide which is best. This is done by measuring the difference between:\n\nThe model’s predictions (ŷ) (also written as “Y hat” or y_hat).\nThe actual observed values (y).\n\nThese errors use the point forecast - a single estimated value for a future event (as opposed to prediction intervals, covered below).\n\n\nSources: Suleman (2024), Hyndman and Athanasopoulos (2021)\nThese measures are scale-dependent, meaning that forecast errors are on the same scale as the data, and they cannot be used to make comparisons between series that involve different units.\nMean absolute error (MAE) - average of the absolute differences between the actual and predicted values.\n\n✅ Easy to understand and interpret.\n✅ Not sensitive to outliers.\n❌ Does not account for scale of the data.\n\nMean Squared Error (MSE) - average of squared differences between the actual and predicted values. It emphasises larger errors due to the squaring operation.\n\n✅ Penalises larger errors more than smaller errors, highlighting poor performance.\n❌ Sensitive to outliers.\n❌ Harder to interpret due to squaring.\n\nRoot mean squared error (RMSE) - square root of MSE. This means the error metric is on the same scale as the original data.\n\n✅ Same units as original data, so it’s interpretable.\n✅ Penalises larger errors more than smaller errors, highlighting poor performance.\n❌ Sensitive to outliers.\n\n\n\n\nSources: Suleman (2024), Wikipedia (2025), Hyndman and Athanasopoulos (2021)\nThese measures are scale-independent, making them useful for comparing across datasets.\nMean absolute percentage error (MAPE) - average of the absolute percentage errors between the actual and predicted values. Expresses the error as a percentage.\n\n✅ Scale-independent.\n✅ Easy to interpret as a percentage.\n❌ Can be biased if actual values are small.\n❌ Doesn’t work if actual values are zero.\n❌ Asymmetric, putting a heavier penalty on negative errors (when forecast is higher than actual) than on positive errors. This is because the percentage error can’t exceed 100% for forecasts that are too low, but there is no upper limit for forecasts that are too high.\n\nSymmetric MAPE (sMAPE) - modified version of MAPE that attempts to deal with the asymmetry, through having lower (0%) and upper (200%) bounds.\n\n✅ Scale-independent.\n✅ Fixes the asymmetry shortcoming of MAPE.\n❌ Less interpretable than MAPE.\n❌ Unstable when true value and forecast are close to zero.\n❌ Can take negative values, and range of 0 to 100% is difficult to interpret.\n\nHyndman & Koehler (2006) recommend that the sMAPE not be used.\n\n\n\nSources: Hyndman and Athanasopoulos (2021), Wikipedia (2025), Suleman (2024)\nProposed by Hyndman & Koehler (2006) as an alternative to percentage errors when comparing forecast accuracy across series with different units.\nMean absolute scaled error (MASE) - the MAE of the forecast values divided by the MAE of the in-sample one-step naive forecast (Naïve1).\n\n✅ Scale-independent.\n✅ Symmetric.\n❌ Requires in-sample data (i.e., data used for model fitting) to calculate the naive forecast error.",
+    "crumbs": [
+      "GitHub",
+      "Evaluating forecast accuracy"
+    ]
+  },
+  {
+    "objectID": "evaluation.html#prediction-intervals",
+    "href": "evaluation.html#prediction-intervals",
+    "title": "Evaluating forecast accuracy",
+    "section": "Prediction intervals",
+    "text": "Prediction intervals\nSources: Monks (2020), Monks (2025b), Monks (2025a), Hyndman and Athanasopoulos (2021)\nA prediction interval is the range that we expect to contain the true value, with some confidence (e.g., 95%). They express the uncertainty in forecasts. There are various methods used to calculate prediction intervals. We can evaluate how good the prediction intervals are - the prediction interval (distributional) forecast accuracy.\n\nEmpirical coverage\nThe proportion of actual values that fell inside the predicted interval.\n\n✅ Simple and intuitive.\n❌ Says nothing about how wide the interval is - a model with huge intervals could have near 100% coverage while being useless in practice.\n\n\n\nAbsolute coverage difference (ACD)\nCompare actual achieved coverage (e.g., 93%) against target coverage (e.g., 95%) and take the absolute difference (e.g., 0.02).\n\n✅ Intuitive.\n❌ Still says nothing about interval width.\n❌ Symmetric - don’t know if it was too narrow (overconfident) or too wide (underconfident). Overconfidence is usually the more serious problem.\n\n\n\nWinkler score (or interval score)\nEvaluates the quality of prediction intervals by balancing the interval width (narrow intervals are more useful) and coverage accuracy (ensuring observations stay within the predicted range). The score is the width of the prediction interval, plus a penalty that is applied if the observation falls outside the preidction interval. The penalty is proportional tot he deviation.\n\n✅ Balances width and accuracy. Proper scoring rule - i.e., can’t improve expected score by deliberately widening or narrowing the interval.\n❌ Scale-dependent.\n❌ Hard to interpret on it’s own - only makes sense relative to other scores on the same series.\n\n\n\nScaled interval score\nThe average Winkler score divided by the one-step in-sample Naïve1 or SNaïve.\n\n✅ Scale-independent.\n✅ Benchmarks against a naive forecast, so a score below 1 tells you the model’s intervals genuinely outperform a naive interval.\n❌ Requires in-sample data to compute the naive benchmark.\n❌ If in-sample naive error is very small or close to zero, the scaled score can be unstable or misleadingly large.",
+    "crumbs": [
+      "GitHub",
+      "Evaluating forecast accuracy"
+    ]
+  },
+  {
+    "objectID": "evaluation.html#data-sets",
+    "href": "evaluation.html#data-sets",
+    "title": "Evaluating forecast accuracy",
+    "section": "Data sets",
+    "text": "Data sets\n\nTrain-test split\nSource: Monks (2020)\nSplit the data into a training set (used to fit the model) and a test set (used to evaluate it).\n\n✅ Simple.\n✅ Doesn’t need much data.\n❌ Gives only a single estimate of forecast error.\n❌ Repeated model selection on the same test set can cause overfitting on that particular held-out period.\n\n\nWhat is overfitting? Overfitting is a problem that occurs when an algorithm learns the training data “too well”. This means it performs very well on training training data, but poorly on new unseen data.\n\n\n\nTrain-validation-test-split\nSource: Monks (2020)\nAdd a validation set between training and test. The validation set is used to select and tune your model, then the final error estimate is reported on the untouched test set.\n\n✅ Test set is only used once, giving a fairer estimate of real world error.\n❌ Gives only a single estimate of forecast error.\n❌ Requires a longer time series.\n\n\n\nCross-validation with rolling forecast origin\nSource: Monks (2020)\nInstead of one split, you create many overlapping sets of train/test or train/validation/test splits by repeatedly moving the “origin” point forward through the data.\n\n✅ Many error estimates, not just one, giving a more reliable picture of model performance.\n\n\n\n\nCross-validation with rolling forecast origin. Image from Monks (2020) (CC-BY).\n\n\n\n\nCross-validation with sliding window (fixed train size)\nSource: Monks (2020), Monks (2025c)\nA variant where instead of expanding the training window, you slide a fixed-size window forward, so older data is dropped from training as new data is added. Useful when you believe very old data is less relevant.\n\n\n\nCross-validation with sliding window. Image from Monks (2020) (CC-BY).",
+    "crumbs": [
+      "GitHub",
+      "Evaluating forecast accuracy"
+    ]
+  },
+  {
+    "objectID": "evaluation.html#references",
+    "href": "evaluation.html#references",
+    "title": "Evaluating forecast accuracy",
+    "section": "References",
+    "text": "References\n\n\nHyndman, Rob., and George. Athanasopoulos. 2021. “The Forecaster’s Toolbox.” Chap. 5 in Forecasting Principles and Practice, 3rd ed. OTexts. https://otexts.com/fpp3/toolbox.html.\n\n\nMonks, Tom. 2020. An Introduction to Forecasting in Health. https://docs.google.com/presentation/d/1zfTUgY7ysnt7zGA_ZJSANv3pxTBxsOoIqsJW-0hcj4s/.\n\n\nMonks, Tom. 2025a. Evaluating a Prediction Interval. https://tommonks.github.io/forecast-tools/content/02a_coverage_metrics.html.\n\n\nMonks, Tom. 2025b. How to Evaluate Forecast Prediction Intervals with the Winkler Score. https://github.com/TheOpenScienceNerd/winkler_score.\n\n\nMonks, Tom. 2025c. Time Series Cross Validation. https://tommonks.github.io/forecast-tools/content/03_cross_validation.html.\n\n\nSuleman, Eshban. 2024. Understanding Evaluation Metrics for Time Series Forecasting. https://eshban9492.medium.com/understanding-evaluation-metrics-for-time-series-forecasting-5c8a3c877654.\n\n\nWikipedia. 2025. Mean Absolute Scaled Error. https://en.wikipedia.org/wiki/Mean_absolute_scaled_error.",
+    "crumbs": [
+      "GitHub",
+      "Evaluating forecast accuracy"
+    ]
+  },
+  {
+    "objectID": "introduction.html",
+    "href": "introduction.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Forecasting is the process of using historical data to make predictions about future values. It applies statistical models to historical patterns, and projects those patterns forwards in time.",
+    "crumbs": [
+      "GitHub",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "introduction.html#what-is-forecasting",
+    "href": "introduction.html#what-is-forecasting",
+    "title": "Introduction",
+    "section": "",
+    "text": "Forecasting is the process of using historical data to make predictions about future values. It applies statistical models to historical patterns, and projects those patterns forwards in time.",
+    "crumbs": [
+      "GitHub",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "introduction.html#the-forecasting-process",
+    "href": "introduction.html#the-forecasting-process",
+    "title": "Introduction",
+    "section": "The forecasting process",
+    "text": "The forecasting process\n\n\n\n\nSteps of a forecasting project\nSource: Monks (2020a)\n\nDefine the problem (what we are forecasting and how it will be used).\nCollect time series data\nExplore and visulise the data\nFit a range of candidate models\nEvaluate and choose the best models (using error metrics).\nGenerate the forecast (using the best model).\n\n\n\nQuestions to ask when defining the problem\nSources: Monks (2020a), HSMA (2024)\n\nWhat decisions will forecasting support? (e.g., short term operational? long term? future resource requirements?).\nDo you need to forecast one quantity or many (i.e., total demand, v.s., demand broken down by age group or region).\nHow accurate does forecast need to be to support decisions?\nHow far ahead do you need to forecast?\nWhat is the frequency of your data, and how often do you need new forecasts (i.e., cannot produce daily forecasts from monthly data).",
+    "crumbs": [
+      "GitHub",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "introduction.html#time-series-data",
+    "href": "introduction.html#time-series-data",
+    "title": "Introduction",
+    "section": "Time series data",
+    "text": "Time series data\nSource: Monks (2020a)\nA times series is a sequence of observations recorded at regular intervals over time. Features of a time series:\n\nTrend - the long-term underlying direction of values, independent of short-term fluctuations.\nSeasonality - a repeating pattern at fixed times - e.g., high demand on weekends.\nMean - average level of the series.\nVariance - how spread out the vales are around the mean.\n\nThere are also two more complicated properties explained below:\n\nStationarity\nAutocorrelation\n\n\nStationarity\nSource: Monks (2020b)\nA stationary time series has:\n\nNo trend.\nNo seasonality.\nStable variance.\n\nThis is uncommon for healthcare datasets.\n\n\nAutocorrelation\nSource: Howell (2022)\nAutocorrelation is the correlation of data with itself, at two different points in time (known as lags) - so we are measuring how a data point relates to its own past self at different lags.\nFor example, if a busy Sunday is often be followed by a busy Monday.\nIt can also be used to help detect seasonality.",
+    "crumbs": [
+      "GitHub",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "introduction.html#references",
+    "href": "introduction.html#references",
+    "title": "Introduction",
+    "section": "References",
+    "text": "References\n\n\nHowell, Egor. 2022. Autocorrelation for Time Series Analysis. https://towardsdatascience.com/autocorrelation-for-time-series-analysis-86e68e631f77/.\n\n\nHSMA. 2024. 8B Forecasting: Part 1 - Intro to Forecasting. https://github.com/hsma-programme/8b_forecasting/blob/main/HSMA%205%20Slides%20-%20Part%201%20-%20Intro%20to%20Forecasting.pdf.\n\n\nMonks, Tom. 2020a. An Introduction to Forecasting in Health. https://docs.google.com/presentation/d/1zfTUgY7ysnt7zGA_ZJSANv3pxTBxsOoIqsJW-0hcj4s/.\n\n\nMonks, Tom. 2020b. Modelling Health System Demand Using ARIMA. https://docs.google.com/presentation/d/1CD5rWyjdhCcQDOYaAbhXlCE0ilZVBmq7dDL14IzIt5w.",
+    "crumbs": [
+      "GitHub",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "naive.html",
+    "href": "naive.html",
+    "title": "Naive benchmark models",
+    "section": "",
+    "text": "Sources: Monks (2020), Hyndman and Athanasopoulos (2021)\nBefore fitting complex models, you should establish a naive benchmark, which is a simple forecast that your complex models should beat. Common benchmarks include:\nThese benchmarks are also used as the reference for scaled error metrics (e.g., MASE).",
+    "crumbs": [
+      "GitHub",
+      "Naive benchmark models"
+    ]
+  },
+  {
+    "objectID": "naive.html#references",
+    "href": "naive.html#references",
+    "title": "Naive benchmark models",
+    "section": "References",
+    "text": "References\n\n\nHyndman, Rob., and George. Athanasopoulos. 2021. “The Forecaster’s Toolbox.” Chap. 5 in Forecasting Principles and Practice, 3rd ed. OTexts. https://otexts.com/fpp3/toolbox.html.\n\n\nMonks, Tom. 2020. An Introduction to Forecasting in Health. https://docs.google.com/presentation/d/1zfTUgY7ysnt7zGA_ZJSANv3pxTBxsOoIqsJW-0hcj4s/.",
+    "crumbs": [
+      "GitHub",
+      "Naive benchmark models"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Forecasting",
+    "title": "Forecasting in Python",
     "section": "",
-    "text": "Forecasting is the process of using historical data to make predictions about future values. It applies statistical models to historical patterns, and projects those patterns forwards in time."
-  },
-  {
-    "objectID": "index.html#the-forecasting-process",
-    "href": "index.html#the-forecasting-process",
-    "title": "Forecasting",
-    "section": "The forecasting process",
-    "text": "The forecasting process\n\nSteps of a forecasting project\nSource: Monks (2020a)\n\nDefine the problem (what we are forecasting and how it will be used).\nCollect time series data\nExplore and visulise the data\nFit a range of candidate models\nEvaluate and choose the best models (using error metrics).\nGenerate the forecast (using the best model).\n\n\n\nQuestions to ask when defining the problem\nSources: Monks (2020a), HSMA (2024)\n\nWhat decisions will forecasting support? (e.g., short term operational? long term? future resource requirements?).\nDo you need to forecast one quantity or many (i.e., total demand, v.s., demand broken down by age group or region).\nHow accurate does forecast need to be to support decisions?\nHow far ahead do you need to forecast?\nWhat is the frequency of your data, and how often do you need new forecasts (i.e., cannot produce daily forecasts from monthly data)."
-  },
-  {
-    "objectID": "index.html#time-series-data",
-    "href": "index.html#time-series-data",
-    "title": "Forecasting",
-    "section": "Time series data",
-    "text": "Time series data\nSource: Monks (2020a)\nA times series is a sequence of observations recorded at regular intervals over time. Features of a time series:\n\nTrend - the long-term underlying direction of values, independent of short-term fluctuations.\nSeasonality - a repeating pattern at fixed times - e.g., high demand on weekends.\nMean - average level of the series.\nVariance - how spread out the vales are around the mean.\n\nThere are also two more complicated properties explained below:\n\nStationarity\nAutocorrelation\n\n\nStationarity\nSource: Monks (2020b)\nA stationary time series has:\n\nNo trend.\nNo seasonality.\nStable variance.\n\nThis is uncommon for healthcare datasets.\n\n\nAutocorrelation\nSource: Howell (2022)\nAutocorrelation is the correlation of data with itself, at two different points in time (known as lags) - so we are measuring how a data point relates to its own past self at different lags.\nFor example, if a busy Sunday is often be followed by a busy Monday.\nIt can also be used to help detect seasonality."
-  },
-  {
-    "objectID": "index.html#naive-benchmark-models",
-    "href": "index.html#naive-benchmark-models",
-    "title": "Forecasting",
-    "section": "Naive benchmark models",
-    "text": "Naive benchmark models\nSources: Monks (2020a), Hyndman and Athanasopoulos (2021)\nBefore fitting complex models, you should establish a naive benchmark, which is a simple forecast that your complex models should beat. Common benchmarks include:\n\nNaïve (Naïve1): Carry the last observed vale forward.\nSeasonal Naïve (SNaïve): Carry the last observation from the same period forward (e.g., use Last Monday’s value for this Monday).\nDrift: Variation of the naïve method that allows the forecasts to increase or decrease over time, where the amount of change over time (the drift) is set to be the average change seen in the historical data.\nMean: Use overall historical mean.\n\nThese benchmarks are also used as the reference for scaled error metrics (e.g., MASE)."
-  },
-  {
-    "objectID": "index.html#evaluating-forecast-accuracy-point-forecast-error",
-    "href": "index.html#evaluating-forecast-accuracy-point-forecast-error",
-    "title": "Forecasting",
-    "section": "Evaluating forecast accuracy: point forecast error",
-    "text": "Evaluating forecast accuracy: point forecast error\nWe will evaluate the accuracy of forecasts from each model to decide which is best. This is done by measuring the difference between:\n\nThe model’s predictions (ŷ) (also written as “Y hat” or y_hat).\nThe actual observed values (y).\n\nThese errors use the point forecast - a single estimated value for a future event (as opposed to prediction intervals, covered below).\n\nScale-dependent errors\nSources: Suleman (2024), Hyndman and Athanasopoulos (2021)\nThese measures are scale-dependent, meaning that forecast errors are on the same scale as the data, and they cannot be used to make comparisons between series that involve different units.\nMean absolute error (MAE) - average of the absolute differences between the actual and predicted values.\n\n✅ Easy to understand and interpret.\n✅ Not sensitive to outliers.\n❌ Does not account for scale of the data.\n\nMean Squared Error (MSE) - average of squared differences between the actual and predicted values. It emphasises larger errors due to the squaring operation.\n\n✅ Penalises larger errors more than smaller errors, highlighting poor performance.\n❌ Sensitive to outliers.\n❌ Harder to interpret due to squaring.\n\nRoot mean squared error (RMSE) - square root of MSE. This means the error metric is on the same scale as the original data.\n\n✅ Same units as original data, so it’s interpretable.\n✅ Penalises larger errors more than smaller errors, highlighting poor performance.\n❌ Sensitive to outliers.\n\n\n\nPercentage/relative errors\nSources: Suleman (2024), Wikipedia (2025), Hyndman and Athanasopoulos (2021)\nThese measures are scale-independent, making them useful for comparing across datasets.\nMean absolute percentage error (MAPE) - average of the absolute percentage errors between the actual and predicted values. Expresses the error as a percentage.\n\n✅ Scale-independent.\n✅ Easy to interpret as a percentage.\n❌ Can be biased if actual values are small.\n❌ Doesn’t work if actual values are zero.\n❌ Asymmetric, putting a heavier penalty on negative errors (when forecast is higher than actual) than on positive errors. This is because the percentage error can’t exceed 100% for forecasts that are too low, but there is no upper limit for forecasts that are too high.\n\nSymmetric MAPE (sMAPE) - modified version of MAPE that attempts to deal with the asymmetry, through having lower (0%) and upper (200%) bounds.\n\n✅ Scale-independent.\n✅ Fixes the asymmetry shortcoming of MAPE.\n❌ Less interpretable than MAPE.\n❌ Unstable when true value and forecast are close to zero.\n❌ Can take negative values, and range of 0 to 100% is difficult to interpret.\n\nHyndman & Koehler (2006) recommend that the sMAPE not be used.\n\n\nScaled errors\nSources: Hyndman and Athanasopoulos (2021), Wikipedia (2025), Suleman (2024)\nProposed by Hyndman & Koehler (2006) as an alternative to percentage errors when comparing forecast accuracy across series with different units.\nMean absolute scaled error (MASE) - the MAE of the forecast values divided by the MAE of the in-sample one-step naive forecast (Naïve1).\n\n✅ Scale-independent.\n✅ Symmetric.\n❌ Requires in-sample data (i.e., data used for model fitting) to calculate the naive forecast error."
-  },
-  {
-    "objectID": "index.html#evaluating-forecast-accuracy-prediction-intervals",
-    "href": "index.html#evaluating-forecast-accuracy-prediction-intervals",
-    "title": "Forecasting",
-    "section": "Evaluating forecast accuracy: prediction intervals",
-    "text": "Evaluating forecast accuracy: prediction intervals\nSources: Monks (2020a), Monks (2025b), Monks (2025a), Hyndman and Athanasopoulos (2021)\nA prediction interval is the range that we expect to contain the true value, with some confidence (e.g., 95%). They express the uncertainty in forecasts. There are various methods used to calculate prediction intervals. We can evaluate how good the prediction intervals are - the prediction interval (distributional) forecast accuracy.\n\nEmpirical coverage\nThe proportion of actual values that fell inside the predicted interval.\n\n✅ Simple and intuitive.\n❌ Says nothing about how wide the interval is - a model with huge intervals could have near 100% coverage while being useless in practice.\n\n\n\nAbsolute coverage difference (ACD)\nCompare actual achieved coverage (e.g., 93%) against target coverage (e.g., 95%) and take the absolute difference (e.g., 0.02).\n\n✅ Intuitive.\n❌ Still says nothing about interval width.\n❌ Symmetric - don’t know if it was too narrow (overconfident) or too wide (underconfident). Overconfidence is usually the more serious problem.\n\n\n\nWinkler score (or interval score)\nEvaluates the quality of prediction intervals by balancing the interval width (narrow intervals are more useful) and coverage accuracy (ensuring observations stay within the predicted range). The score is the width of the prediction interval, plus a penalty that is applied if the observation falls outside the preidction interval. The penalty is proportional tot he deviation.\n\n✅ Balances width and accuracy. Proper scoring rule - i.e., can’t improve expected score by deliberately widening or narrowing the interval.\n❌ Scale-dependent.\n❌ Hard to interpret on it’s own - only makes sense relative to other scores on the same series.\n\n\n\nScaled interval score\nThe average Winkler score divided by the one-step in-sample Naïve1 or SNaïve.\n\n✅ Scale-independent.\n✅ Benchmarks against a naive forecast, so a score below 1 tells you the model’s intervals genuinely outperform a naive interval.\n❌ Requires in-sample data to compute the naive benchmark.\n❌ If in-sample naive error is very small or close to zero, the scaled score can be unstable or misleadingly large."
-  },
-  {
-    "objectID": "index.html#evaluating-forecast-accuracy-data-sets",
-    "href": "index.html#evaluating-forecast-accuracy-data-sets",
-    "title": "Forecasting",
-    "section": "Evaluating forecast accuracy: data sets",
-    "text": "Evaluating forecast accuracy: data sets\n\nTrain-test split\nSource: Monks (2020a)\nSplit the data into a training set (used to fit the model) and a test set (used to evaluate it).\n\n✅ Simple.\n✅ Doesn’t need much data.\n❌ Gives only a single estimate of forecast error.\n❌ Repeated model selection on the same test set can cause overfitting on that particular held-out period.\n\n\nWhat is overfitting? Overfitting is a problem that occurs when an algorithm learns the training data “too well”. This means it performs very well on training training data, but poorly on new unseen data.\n\n\n\nTrain-validation-test-split\nSource: Monks (2020a)\nAdd a validation set between training and test. The validation set is used to select and tune your model, then the final error estimate is reported on the untouched test set.\n\n✅ Test set is only used once, giving a fairer estimate of real world error.\n❌ Gives only a single estimate of forecast error.\n❌ Requires a longer time series.\n\n\n\nCross-validation with rolling forecast origin\nSource: Monks (2020a)\nInstead of one split, you create many overlapping sets of train/test or train/validation/test splits by repeatedly moving the “origin” point forward through the data.\n\n✅ Many error estimates, not just one, giving a more reliable picture of model performance.\n\n\n\n\nCross-validation with rolling forecast origin. Image from Monks (2020a) (CC-BY).\n\n\n\n\nCross-validation with sliding window (fixed train size)\nSource: Monks (2020a), Monks (2025c)\nA variant where instead of expanding the training window, you slide a fixed-size window forward, so older data is dropped from training as new data is added. Useful when you believe very old data is less relevant.\n\n\n\nCross-validation with sliding window. Image from Monks (2020a) (CC-BY)."
-  },
-  {
-    "objectID": "index.html#transformations",
-    "href": "index.html#transformations",
-    "title": "Forecasting",
-    "section": "Transformations",
-    "text": "Transformations\nSources: Hyndman and Athanasopoulos (2021), Monks (2020b)\nMathematical transformations are used to simplify the patterns in historical data to make forecasting simpler and more accurate. Any forecasts are produced on a transformed scale, so the data then has to be back-transformed.\nFor example, if variation increases or decreases over time, a logarithmic transformation is often usedful. If log base 10 is used, then an increase of 1 on the log scale corresponds to a multiplication of 10 on the original scale."
-  },
-  {
-    "objectID": "index.html#references",
-    "href": "index.html#references",
-    "title": "Forecasting",
-    "section": "References",
-    "text": "References\n\n\nHowell, Egor. 2022. Autocorrelation for Time Series Analysis. https://towardsdatascience.com/autocorrelation-for-time-series-analysis-86e68e631f77/.\n\n\nHSMA. 2024. 8B Forecasting: Part 1 - Intro to Forecasting. https://github.com/hsma-programme/8b_forecasting/blob/main/HSMA%205%20Slides%20-%20Part%201%20-%20Intro%20to%20Forecasting.pdf.\n\n\nHyndman, Rob., and George. Athanasopoulos. 2021. “The Forecaster’s Toolbox.” Chap. 5 in Forecasting Principles and Practice, 3rd ed. OTexts. https://otexts.com/fpp3/toolbox.html.\n\n\nMonks, Tom. 2020a. An Introduction to Forecasting in Health. https://docs.google.com/presentation/d/1zfTUgY7ysnt7zGA_ZJSANv3pxTBxsOoIqsJW-0hcj4s/.\n\n\nMonks, Tom. 2020b. Modelling Health System Demand Using ARIMA. https://docs.google.com/presentation/d/1CD5rWyjdhCcQDOYaAbhXlCE0ilZVBmq7dDL14IzIt5w.\n\n\nMonks, Tom. 2025a. Evaluating a Prediction Interval. https://tommonks.github.io/forecast-tools/content/02a_coverage_metrics.html.\n\n\nMonks, Tom. 2025b. How to Evaluate Forecast Prediction Intervals with the Winkler Score. https://github.com/TheOpenScienceNerd/winkler_score.\n\n\nMonks, Tom. 2025c. Time Series Cross Validation. https://tommonks.github.io/forecast-tools/content/03_cross_validation.html.\n\n\nSuleman, Eshban. 2024. Understanding Evaluation Metrics for Time Series Forecasting. https://eshban9492.medium.com/understanding-evaluation-metrics-for-time-series-forecasting-5c8a3c877654.\n\n\nWikipedia. 2025. Mean Absolute Scaled Error. https://en.wikipedia.org/wiki/Mean_absolute_scaled_error."
+    "text": "Author: Amy Heather \nThese are my own notes, written to consolidate my understanding as I learned this topic. They draw heavily on a handful of excellent existing resources. The key sources I used are:\n\nMonks (2020a) — a general introduction to forecasting concepts and workflow.\nMonks (2020b) — a focused walkthrough of ARIMA modelling.\nHyndman and Athanasopoulos (2021) — the standard toolbox reference for forecasting methods and best practice.\nSuleman (2024) — a guide to forecast evaluation metrics.\n\n\nReferences\n\n\nHyndman, Rob., and George. Athanasopoulos. 2021. “The Forecaster’s Toolbox.” Chap. 5 in Forecasting Principles and Practice, 3rd ed. OTexts. https://otexts.com/fpp3/toolbox.html.\n\n\nMonks, Tom. 2020a. An Introduction to Forecasting in Health. https://docs.google.com/presentation/d/1zfTUgY7ysnt7zGA_ZJSANv3pxTBxsOoIqsJW-0hcj4s/.\n\n\nMonks, Tom. 2020b. Modelling Health System Demand Using ARIMA. https://docs.google.com/presentation/d/1CD5rWyjdhCcQDOYaAbhXlCE0ilZVBmq7dDL14IzIt5w.\n\n\nSuleman, Eshban. 2024. Understanding Evaluation Metrics for Time Series Forecasting. https://eshban9492.medium.com/understanding-evaluation-metrics-for-time-series-forecasting-5c8a3c877654."
   }
 ]

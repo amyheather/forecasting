@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Forecasting in Python</title>
+<title>Prophet – Forecasting in Python</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -96,17 +96,10 @@ div.csl-indent {
 background-size: cover;
       }
 </style>
-<style>
-h1 {
-  text-align: center;
-}
-p.subtitle.lead {
-  text-align: center;
-}
-</style>
 
 
 <link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="./style/page_style.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -142,7 +135,7 @@ p.subtitle.lead {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Forecasting in Python</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prophet.html">Prophet</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -151,14 +144,13 @@ p.subtitle.lead {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-right">
-      <h1 class="title">Forecasting in Python</h1>
-            <p class="subtitle lead">A beginner-friendly introduction to time-series forecasting</p>
+    <div class="quarto-title column-body">
+      <h1 class="title">Prophet</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-right">
+  <div class="quarto-title-meta">
 
       
     
@@ -166,7 +158,7 @@ p.subtitle.lead {
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
@@ -197,7 +189,7 @@ p.subtitle.lead {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prophet.html" class="sidebar-item-text sidebar-link">
+  <a href="./prophet.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Prophet</span></a>
   </div>
 </li>
@@ -212,37 +204,26 @@ p.subtitle.lead {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-right" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<p><strong>Author:</strong> <a href="https://amyheather.github.io/">Amy Heather</a> <a href="https://orcid.org/0000-0002-6596-3479"><img src="./images/ORCIDiD_icon16x16.png" class="img-fluid" alt="ORCID logo"></a></p>
-<p>These are my own notes, written to consolidate my understanding as I learned this topic. They draw heavily on a handful of excellent existing resources. The key sources I used are:</p>
-<ul>
-<li><span class="citation" data-cites="monks_intro_to_forecasting">Monks (<a href="#ref-monks_intro_to_forecasting" role="doc-biblioref">2020a</a>)</span> — a general introduction to forecasting concepts and workflow.</li>
-<li><span class="citation" data-cites="monks_arima">Monks (<a href="#ref-monks_arima" role="doc-biblioref">2020b</a>)</span> — a focused walkthrough of ARIMA modelling.</li>
-<li><span class="citation" data-cites="hyndman_toolbox">Hyndman and Athanasopoulos (<a href="#ref-hyndman_toolbox" role="doc-biblioref">2021</a>)</span> — the standard toolbox reference for forecasting methods and best practice.</li>
-<li><span class="citation" data-cites="suleman_metrics">Suleman (<a href="#ref-suleman_metrics" role="doc-biblioref">2024</a>)</span> — a guide to forecast evaluation metrics.</li>
-</ul>
-<section id="references" class="level3">
-<h3 class="anchored" data-anchor-id="references">References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-hyndman_toolbox" class="csl-entry" role="listitem">
-Hyndman, Rob., and George. Athanasopoulos. 2021. <span>“The Forecaster’s Toolbox.”</span> Chap. 5 in <em>Forecasting Principles and Practice</em>, 3rd ed. OTexts. <a href="https://otexts.com/fpp3/toolbox.html">https://otexts.com/fpp3/toolbox.html</a>.
-</div>
-<div id="ref-monks_intro_to_forecasting" class="csl-entry" role="listitem">
-Monks, Tom. 2020a. <em>An Introduction to Forecasting in Health</em>. <a href="https://docs.google.com/presentation/d/1zfTUgY7ysnt7zGA_ZJSANv3pxTBxsOoIqsJW-0hcj4s/">https://docs.google.com/presentation/d/1zfTUgY7ysnt7zGA_ZJSANv3pxTBxsOoIqsJW-0hcj4s/</a>.
-</div>
-<div id="ref-monks_arima" class="csl-entry" role="listitem">
-Monks, Tom. 2020b. <em>Modelling Health System Demand Using ARIMA</em>. <a href="https://docs.google.com/presentation/d/1CD5rWyjdhCcQDOYaAbhXlCE0ilZVBmq7dDL14IzIt5w">https://docs.google.com/presentation/d/1CD5rWyjdhCcQDOYaAbhXlCE0ilZVBmq7dDL14IzIt5w</a>.
-</div>
-<div id="ref-suleman_metrics" class="csl-entry" role="listitem">
-Suleman, Eshban. 2024. <em>Understanding Evaluation Metrics for Time Series Forecasting</em>. <a href="https://eshban9492.medium.com/understanding-evaluation-metrics-for-time-series-forecasting-5c8a3c877654">https://eshban9492.medium.com/understanding-evaluation-metrics-for-time-series-forecasting-5c8a3c877654</a>.
-</div>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" role="list">
+
 </div>
 
 
