@@ -1,6 +1,9 @@
 ---
 title: Introduction
 bibliography: references.bib
+format:
+  html:
+    css: /style/page_style.css
 ---
 
 ## What is forecasting?

@@ -1,0 +1,5 @@
+/* Banner spacing */
+body.nav-sidebar .quarto-title-banner {
+  margin-top: 0px;
+  margin-bottom: -15px;
+}

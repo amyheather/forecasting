@@ -1,61 +1,24 @@
 ---
-title: Forecasting in Python
+title: "Forecasting in Python"
+subtitle: "A beginner-friendly introduction to time-series forecasting"
 bibliography: references.bib
-author:
-  - name: Amy Heather
-    orcid: 0000-0002-6596-3479
+include-in-header:
+  - text: |
+      <style>
+      h1 {
+        text-align: center;
+      }
+      p.subtitle.lead {
+        text-align: center;
+      }
+      </style>
+format:
+  html:
+    toc: false
+    page-layout: full
 ---
 
-```{=html}
-<script src="finisher-header.es5.min.js" type="text/javascript"></script>
-
-<body>
-  <div class="header finisher-header" style="width: 2000px; height: 900px;">
-    Logo, navigation, etc.
-  </div>
-  ...
-</body>
-
-<script type="text/javascript">
-new FinisherHeader({
-  "count": 12,
-  "size": {
-    "min": 328,
-    "max": 862,
-    "pulse": 0
-  },
-  "speed": {
-    "x": {
-      "min": 0.3,
-      "max": 0.5
-    },
-    "y": {
-      "min": 0.1,
-      "max": 0.3
-    }
-  },
-  "colors": {
-    "background": "#660033",
-    "particles": [
-      "#a86b7e",
-      "#c69ba7",
-      "#691c1c"
-    ]
-  },
-  "blending": "overlay",
-  "opacity": {
-    "center": 1,
-    "edge": 0.1
-  },
-  "skew": 0,
-  "shapes": [
-    "c"
-  ]
-});
-</script>
-```
-
-A beginner-friendly introduction to time-series forecasting.
+**Author:** [Amy Heather](https://amyheather.github.io/) [![ORCID logo](/images/ORCIDiD_icon16x16.png)](https://orcid.org/0000-0002-6596-3479)
 
 These are my own notes, written to consolidate my understanding as I learned this topic. They draw heavily on a handful of excellent existing resources. The key sources I used are:
 

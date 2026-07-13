@@ -1,6 +1,9 @@
 ---
 title: Transformation
 bibliography: references.bib
+format:
+  html:
+    css: /style/page_style.css
 ---
 
 <span class="source-note">Sources: @hyndman_toolbox, @monks_arima</span>

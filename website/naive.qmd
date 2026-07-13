@@ -1,6 +1,9 @@
 ---
 title: Naive benchmark models
 bibliography: references.bib
+format:
+  html:
+    css: /style/page_style.css
 ---
 
 <span class="source-note">Sources: @monks_intro_to_forecasting, @hyndman_toolbox</span>

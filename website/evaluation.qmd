@@ -1,6 +1,9 @@
 ---
 title: Evaluating forecast accuracy
 bibliography: references.bib
+format:
+  html:
+    css: /style/page_style.css
 ---
 
 ## Point forecast error
