@@ -6,7 +6,7 @@ This repository contains:
 
 * **Research notes:** Describes existing research with the South Western Ambulance Service NHS Foundation Trust (SWASFT) and plans for ongoing work.
 
-View at: https://amyheather.github.io/forecasting/
+View at: https://ambmodels.github.io/forecasting-research/
 
 ## Viewing locally
 
