@@ -23,6 +23,7 @@ website:
         contents:
         - ambulance_paper.qmd
         - ambulance_notebook.qmd
+        - ambulance_project.qmd
 
 format:
   html:

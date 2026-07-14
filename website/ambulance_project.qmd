@@ -1,0 +1,43 @@
+---
+title: Project
+bibliography: references.bib
+format:
+  html:
+    css: /style/page_style.css
+---
+
+There are three objectives:
+
+* Short-term forecasting.
+* Prediction intervals in long term forecasts.
+* Handling COVID data.
+
+The priority to start with is short-term forecasting.
+
+## Short-term forecasting
+
+Focus on short-term forecasts (up to about a week), anticipating demand for a given week.
+
+Interested in incorporating features for demand spikes -
+
+* Weather information (e.g., heatwaves)
+* Seasonal diseases
+
+SWAST have historical temperature data from 2017 to 2025 for every weather station in the South West and can help get any other weather type data eg. rainfall, wind, snow if useful.
+
+SWAST also have an API that can download the seasonal disease info from UKHSA every week.
+
+*Additional notes: Relationship potentially changed since COVID? Also, Nav shared <https://doi.org/10.1057/jors.2011.160>.*
+
+## Prediction intervals in long term forecasts
+
+Want to improve prediction/uncertainty intervals for longer forecasts (e.g., several months).
+
+Consider conformal prediction.
+
+## Handling COVID data
+
+Decide how to handle lockdown data.
+
+* Should it be dropped?
+* Should it be retained as an intervention variable in line with prophet approach?
