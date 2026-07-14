@@ -1,5 +1,5 @@
 ---
-title: "Forecasting in Python"
+title: "Forecasting"
 subtitle: "A beginner-friendly introduction to time-series forecasting"
 bibliography: references.bib
 include-in-header:
@@ -20,7 +20,9 @@ format:
 
 **Author:** [Amy Heather](https://amyheather.github.io/) [![ORCID logo](/images/ORCIDiD_icon16x16.png)](https://orcid.org/0000-0002-6596-3479)
 
-These are my own notes, written to consolidate my understanding as I learned this topic. They draw heavily on a handful of excellent existing resources. The key sources I used are:
+These are my own notes, written to consolidate my understanding as I learned this topic. They cover general forecasting theory, plus applied notes prepared as part of internship work.
+
+They draw heavily on a handful of excellent existing resources. The key sources I used are:
 
 - @monks_intro_to_forecasting — a general introduction to forecasting concepts and workflow.
 - @monks_arima — a focused walkthrough of ARIMA modelling.

@@ -1,8 +1,10 @@
-# Forecasting in Python
+# Forecasting
 
 A beginner-friendly introduction to time-series forecasting.
 
-These are my own notes, written to consolidate my understanding as I learned this topic. They draw heavily on a handful of excellent existing resources. The key sources I used are:
+These are my own notes, written to consolidate my understanding as I learned this topic. They cover general forecasting theory, plus applied notes prepared as part of internship work.
+
+They draw heavily on a handful of excellent existing resources. The key sources I used are:
 
 * Monks, Tom. 2020a. An Introduction to Forecasting in Health. https://docs.google.com/presentation/d/1zfTUgY7ysnt7zGA_ZJSANv3pxTBxsOoIqsJW-0hcj4s/.
 * Monks, Tom. 2020b. Modelling Health System Demand Using ARIMA. https://docs.google.com/presentation/d/1CD5rWyjdhCcQDOYaAbhXlCE0ilZVBmq7dDL14IzIt5w.
