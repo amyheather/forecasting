@@ -1,27 +1,10 @@
 [
   {
-    "objectID": "other_methods.html",
-    "href": "other_methods.html",
-    "title": "Other methods",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Forecasting: Theory and Research Notes",
     "section": "",
-    "text": "Source: Hyndman and Athanasopoulos (2021)\nForecast accuracy can be improved by using several different methods on the same time series, and averaging the resulting forecasts.\nUsing a simple mean is often best.",
-    "crumbs": [
-      "GitHub",
-      "Theory",
-      "Other methods"
-    ]
-  },
-  {
-    "objectID": "other_methods.html#combinationensemble-forecasts",
-    "href": "other_methods.html#combinationensemble-forecasts",
-    "title": "Other methods",
-    "section": "",
-    "text": "Source: Hyndman and Athanasopoulos (2021)\nForecast accuracy can be improved by using several different methods on the same time series, and averaging the resulting forecasts.\nUsing a simple mean is often best.",
-    "crumbs": [
-      "GitHub",
-      "Theory",
-      "Other methods"
-    ]
+    "text": "Author: Amy Heather \nThis site contains:\n\nTheory: Beginner friendly introduction to forecasting, including ARIMA and Prophet. Draws heavily on a range of existing resources (cited within).\nResearch notes: Describes existing research with the South Western Ambulance Service NHS Foundation Trust (SWASFT) and plans for ongoing work."
   },
   {
     "objectID": "evaluation.html",
@@ -81,54 +64,6 @@
       "GitHub",
       "Theory",
       "Evaluating forecast accuracy"
-    ]
-  },
-  {
-    "objectID": "ambulance_notebook.html",
-    "href": "ambulance_notebook.html",
-    "title": "Notebook",
-    "section": "",
-    "text": "Daily count of:\n\nIncidents (Incidents).\nResponses (Responses).\nCalls (Calls and Calls_Other).\nSickness (Sickness).\nUnplanned absence (Unplanned).\n\nFor the whole trust ['Trust'] and for each region ['Gloucestershire', 'BNSSG', 'Cornwall', 'Dorset', 'BSW', 'Somerset', 'Devon'].\n\n\n\nBank holidays and school holiday dates per region, plus lower-upper window defining how many days before/after holiday the effect should be felt.",
-    "crumbs": [
-      "GitHub",
-      "Research Notes",
-      "Notebook"
-    ]
-  },
-  {
-    "objectID": "ambulance_notebook.html#data",
-    "href": "ambulance_notebook.html#data",
-    "title": "Notebook",
-    "section": "",
-    "text": "Daily count of:\n\nIncidents (Incidents).\nResponses (Responses).\nCalls (Calls and Calls_Other).\nSickness (Sickness).\nUnplanned absence (Unplanned).\n\nFor the whole trust ['Trust'] and for each region ['Gloucestershire', 'BNSSG', 'Cornwall', 'Dorset', 'BSW', 'Somerset', 'Devon'].\n\n\n\nBank holidays and school holiday dates per region, plus lower-upper window defining how many days before/after holiday the effect should be felt.",
-    "crumbs": [
-      "GitHub",
-      "Research Notes",
-      "Notebook"
-    ]
-  },
-  {
-    "objectID": "ambulance_notebook.html#models",
-    "href": "ambulance_notebook.html#models",
-    "title": "Notebook",
-    "section": "Models",
-    "text": "Models\n\n\n\n\nProphet\npredict_prophet_stf\n\nchangepoint_range is 1 for responses and 0.8 for other outcomes.\nchangepoint_prior_scale is 0.5 for responses and 0.05 for other outcomes.\nWeekly and yearly seasonality.\n\n\n\nEnsemble\ndefault_ensemble\nARIMA model within the ensemble (ProphetARIMAEnsemble, get_best_arima_parameters):\n\nRegression with ARIMA errors.\nNon-seasonal order (p,d,q) = (1,1,3): 1 AR term, first-order differencing, 3 MA terms.\nSeasonal order (P,D,Q,m) = (1,0,1,7): weekly seasonality with 1 seasonal AR term, 1 seasonal MA term, and no seasonal differencing.\nSingle binary holiday dummy flags whether a date falls in a holiday window. Collapses all holidays (e.g., New Years Day, Easter, Bank Holiday) into one undifferentiated effect rather than modelling each holiday type separately.\nenforce_stationarity=False.\n\nThe point forecast error (y_hat) and prediction intervals (yhat_lower_95 and yhat_upper_95) are determined by finding the mean of the Prophet and ARIMA results.\ndf['yhat'] = (df['prophet_mean'].values + df['arima_mean'].values ) / 2\ndf['yhat_lower_95'] = (df['prophet_lower_95'].values + df['arima_lower_95'].values ) / 2\ndf['yhat_upper_95'] = (df['prophet_upper_95'].values + df['arima_upper_95'].values ) / 2",
-    "crumbs": [
-      "GitHub",
-      "Research Notes",
-      "Notebook"
-    ]
-  },
-  {
-    "objectID": "ambulance_notebook.html#forecast",
-    "href": "ambulance_notebook.html#forecast",
-    "title": "Notebook",
-    "section": "Forecast",
-    "text": "Forecast\n42-day-ahead forecast. Starting point is last Monday (i.e., next Monday, minus seven days).\nResponses and incidents are forecast for each region and for whole trust. Calls, sickness and unplanned absence are all only forecast at the trust level.\nThe forecast dataframe contains:\n\nARIMA results for Calls and Responses.\nEnsemble results for all other outcomes.",
-    "crumbs": [
-      "GitHub",
-      "Research Notes",
-      "Notebook"
     ]
   },
   {
@@ -208,7 +143,7 @@
     "href": "ambulance_project.html#short-term-forecasting",
     "title": "Project",
     "section": "Short-term forecasting",
-    "text": "Short-term forecasting\nFocus on short-term forecasts (up to about a week), anticipating demand for a given week.\nInterested in incorporating features for demand spikes -\n\nWeather information (e.g., heatwaves)\nSeasonal diseases\n\nSWAST have historical temperature data from 2017 to 2025 for every weather station in the South West and can help get any other weather type data eg. rainfall, wind, snow if useful.\nSWAST also have an API that can download the seasonal disease info from UKHSA every week.\nAdditional notes: Relationship potentially changed since COVID? Also, Nav shared https://doi.org/10.1057/jors.2011.160.\n\nTom said we need to think about temperature data… if you are training on actual data, but then using forecast in forecast… forecast comes with uncertainty… incorporate? Paul Harper Cardiff may have done some stuff around this, Bayesian, emergency admissions.\nAlso, Tom gave ideas around improved models. Suggested worry less about point forecast, and focus more on trying to shrink prediction intervals while maintaining good coverage.\nModel ideas…\n\nImproved ensemble. Prophet prediction - get a time series of errors If you subtracted the error from your forecast, you would true result Hence, lets train an ARIMA model on those errors, and forecast the error in our forecast, alongside our actual forecast If we then add our forecast + our predicted error in the forecast, hopefully gives you a better prediction.\nLondon Ambulance Service might be doing something similar… Generalised additive model.\nBahan Professor Cardiff has probably done some good stuff around forecasting in R that we could check out… open, R, Rob Heindman.",
+    "text": "Short-term forecasting\nFocus on short-term forecasts (up to about a week), anticipating demand for a given week.\nInterested in incorporating features for demand spikes -\n\nWeather information (e.g., heatwaves)\nSeasonal diseases\n\nSWAST have historical temperature data from 2017 to 2025 for every weather station in the South West and can help get any other weather type data eg. rainfall, wind, snow if useful.\nSWAST also have an API that can download the seasonal disease info from UKHSA every week.\nAdditional notes: Relationship potentially changed since COVID? Also, Nav shared https://doi.org/10.1057/jors.2011.160.\n\nTom said we need to think about temperature data… if you are training on actual data, but then using forecast in forecast… forecast comes with uncertainty… incorporate? Paul Harper Cardiff may have done some stuff around this, Bayesian, emergency admissions.\nAlso, Tom gave ideas around improved models. Suggested worry less about point forecast, and focus more on trying to shrink prediction intervals while maintaining good coverage.\nModel ideas…\n\nImproved ensemble. Prophet prediction - get a time series of errors If you subtracted the error from your forecast, you would true result Hence, lets train an ARIMA model on those errors, and forecast the error in our forecast, alongside our actual forecast If we then add our forecast + our predicted error in the forecast, hopefully gives you a better prediction.\nLondon Ambulance Service might be doing something similar… Generalised additive model.\nProfessor Bahman Rostami-Tabar has probably done some good stuff around forecasting in R that we could check out… open, R, Rob Hyndman.\n\nARIMAX: ARIMA with exogenous regressors\nProphet add_regressor\nhttps://pmc.ncbi.nlm.nih.gov/articles/PMC7087605/ and https://link.springer.com/article/10.1007/s00484-023-02435-1\n\nFirst:\n\nARIMA 1- to 7-day forecast.\nARIMA with actual average temperature, forecast average temperature, and /or relative humidity. They find actual temp best, forecast temp pretty similar, and that adding humidity didn’t improve.\n\nSecond:\n\nDevelop biometeorological indexes which is a single variable composed of multiple weather factors\nIn 1- to 7-day ARIMA forecasts\nSimple average temperature performed better.\n\nTake-home: Temperature… humidity… rainfall… wind… may actually be ok with just temperature potentially, don’t know if will need all these different ones or not.\nhttps://bmjopen.bmj.com/content/2/4/e001074 and https://www.sciencedirect.com/science/article/pii/S0048969719350387?via%3Dihub and https://pmc.ncbi.nlm.nih.gov/articles/PMC12117535/\n\nHeat has immediate short-lasting effect\n\nOn number of ambulance attendances in Australia (0-1 days lag)… 1.17% increase per 1C over threshold\nOn number of ambulance calls in China (0-30h lag).\nOn ambulance dispatches in Czechia (up to 2 days).\n\nCold has delayed, longer-lasting effect\n\nOn number of ambulance attendances in Australia (2-15 days lag)… 1.3% per 1C below threshold\nOn number of ambulance calls in China (50-170h lag).\nOn ambulance dispatches in Czechia (up to 3 weeks).\n\n\nTakehome: Explore adding lagged temperature (i.e., temp from 1, 2, 3, - 14 days ago), not just temperature on that day alone.\nAll use DLNM. Takehome: Good to use DLNM for this analysis. Distributed Lag Non-Linear Models (DLNM)… DLNM framework… R dlnm package… could inform which lag features to include in the models…\nhttps://pmc.ncbi.nlm.nih.gov/articles/PMC12117535/ and https://journals.ametsoc.org/view/journals/wcas/15/3/WCAS-D-22-0046.1.xml\n\nHeatwaves have cumulative added effect on top of just temperature on ambulance dispatches in Czech study\nIncreased risk of cardiovascular ambulance dispatches on heatwave days\n\nTakehome: Explicit heatwave modelling? E.g. Binary heatwave flag if days where max temp &gt; X, for &gt; 2 days.\nhttps://journals.sagepub.com/doi/10.1177/10946705241232169\nForecast of emergency medical serices, but instead of having separate demand forecasts for national v.s. regional v.s., sub-regional, it is doing some hierarchical grouped stuff.\nhttps://researchportal.ulisboa.pt/en/publications/short-term-forecasting-of-emergency-medical-services-demand-explo/\nUsing machine learning to forecast EMS demand\nWeather data\n\nFor the 7-day horizon, Met Office forecast temperatures (available up to 8 days ahead via the Weather DataHub at 2 km resolution or the free Open-Meteo UK Met Office API)\nHistorical:\n\nEuropean Climate Assessment & Dataset\nOpen-Meteo Historical API\n\nForecast:\n\nMet Office Weather DataHub\nOpen-Meteo UK Met Office API\nECMWF ENS\n\n\nRemember: Weather forecast day 1-3 more accurate, day 4-7 less so, will presumably contribute to prediction intervals, more uncertain later in forecast\nConsider: We are accounting for seasonality. Adding temperature, it’s associated with seasonality, might be some kind of correlation/colinearity issue? Or is it ok?\n\nhttps://github.com/facebook/prophet/issues/1017: Consider using deviation from the long-term daily average for that calendar date, rather than absolute temperature? Captures unusual warmth or cold? Or maybe that’s more relevant for longer forecast?\n\nConsider: Instead of single average temp per region, an average weighted by population density in each region.",
     "crumbs": [
       "GitHub",
       "Research Notes",
@@ -333,6 +268,114 @@
       "GitHub",
       "Theory",
       "ARIMA"
+    ]
+  },
+  {
+    "objectID": "other_methods.html",
+    "href": "other_methods.html",
+    "title": "Other methods",
+    "section": "",
+    "text": "Source: Hyndman and Athanasopoulos (2021)\nForecast accuracy can be improved by using several different methods on the same time series, and averaging the resulting forecasts.\nUsing a simple mean is often best.",
+    "crumbs": [
+      "GitHub",
+      "Theory",
+      "Other methods"
+    ]
+  },
+  {
+    "objectID": "other_methods.html#combinationensemble-forecasts",
+    "href": "other_methods.html#combinationensemble-forecasts",
+    "title": "Other methods",
+    "section": "",
+    "text": "Source: Hyndman and Athanasopoulos (2021)\nForecast accuracy can be improved by using several different methods on the same time series, and averaging the resulting forecasts.\nUsing a simple mean is often best.",
+    "crumbs": [
+      "GitHub",
+      "Theory",
+      "Other methods"
+    ]
+  },
+  {
+    "objectID": "ambulance_paper.html",
+    "href": "ambulance_paper.html",
+    "title": "Paper",
+    "section": "",
+    "text": "Monks, T., Harper, A., Allen, M. et al. Forecasting the daily demand for emergency medical ambulances in England and Wales: a benchmark model and external validation. BMC Med Inform Decis Mak 23, 117 (2023). https://doi.org/10.1186/s12911-023-02218-z.\nhttps://github.com/TomMonks/swast-benchmarking\nhttps://github.com/TomMonks/swast-forecast-tool",
+    "crumbs": [
+      "GitHub",
+      "Research Notes",
+      "Paper"
+    ]
+  },
+  {
+    "objectID": "ambulance_paper.html#paper-and-github-repositories",
+    "href": "ambulance_paper.html#paper-and-github-repositories",
+    "title": "Paper",
+    "section": "",
+    "text": "Monks, T., Harper, A., Allen, M. et al. Forecasting the daily demand for emergency medical ambulances in England and Wales: a benchmark model and external validation. BMC Med Inform Decis Mak 23, 117 (2023). https://doi.org/10.1186/s12911-023-02218-z.\nhttps://github.com/TomMonks/swast-benchmarking\nhttps://github.com/TomMonks/swast-forecast-tool",
+    "crumbs": [
+      "GitHub",
+      "Research Notes",
+      "Paper"
+    ]
+  },
+  {
+    "objectID": "ambulance_paper.html#data",
+    "href": "ambulance_paper.html#data",
+    "title": "Paper",
+    "section": "Data",
+    "text": "Data\nDaily count of emergency calls that resulted in ambulance dispatch.\nScreened time series for anomalies, then divided:\n\nTraining (1 January 2013 to 30 June 2017, n=1279).\nValidation (1 July 2017 to 31 December 2018, n=549).\nTest (1 January 2019 to 31 December 2019, n=365).\n\nThere appears to be an error in the paper dates. It says validation ends 31 January 2018, but have confirmed from notebook that it is December.",
+    "crumbs": [
+      "GitHub",
+      "Research Notes",
+      "Paper"
+    ]
+  },
+  {
+    "objectID": "ambulance_paper.html#models",
+    "href": "ambulance_paper.html#models",
+    "title": "Paper",
+    "section": "Models",
+    "text": "Models\nNaive benchmark: Seasonal Naive method - using the most recent observation from the same day of the week and carrying it forward (e.g., if forecasting next Tuesday, use the observation from the most recent Tuesday as the predicted value).\nCandidate models:\n\nHolt-Winters Exponential Smoothing\nAutomatic Autoregressive Integrated Moving Average (autoARIMA)\nLagged regression (autoregression) with holidays and seasonal indexes\nLagged regularised regression (elastic-net) with seasonal indexes\nRegression with holidays and ARIMA errors\nRegression with holidays, seasonal indexes and ARIMA errors\nHarmonic Regression (fourier terms) with holidays\nSingular Spectrum Analysis\nFacebook Prophet\nTrigonometric seasonality, Box-Cox transformation (TBATS)\nComb: Simple Exponential Smoothing, Linear Trend, damped trend\nEnsemble of:\n\nHolt-Winters Exponental Smoothing (1).\nRegression with holiday and ARIMA errors (5).\n\nEnsemble of:\n\nRegression with holiday and ARIMA errors (5).\nFacebook Prophet (9).\n\nEnsemble of:\n\nHolt-Winters Exponential Smoothing (1).\nRegression with holidays and ARIMA errors (5).\nFacebook Prophet (9)\n\n\nThere appears to be some errors in the table in the paper. The above list of candidates was corrected based on the descriptions from the notebooks. In the paper, it says model 12 is actually 1+2 (not 1+5), and that model 13 is 5+7 (not 5+9).",
+    "crumbs": [
+      "GitHub",
+      "Research Notes",
+      "Paper"
+    ]
+  },
+  {
+    "objectID": "ambulance_paper.html#evaluation",
+    "href": "ambulance_paper.html#evaluation",
+    "title": "Paper",
+    "section": "Evaluation",
+    "text": "Evaluation\nPoint forecast error:\n\nMean Absolute Scaled Error (MASE)\n\nEasy to understand.\nRelative so can compare across ambulance trusts.\nScaled the out of sample mean absolute error by the equivalent one-step within-sample error from a Seasonal Naive model.\n\nSymmetric Mean Absolute Percentage Error (sMAPE)\nRoot Mean Absolute Squared Error (RMSE)\n\nAs it has been used elsewhere, but can only be used in the context of the specific time series.\n\n\nPrediction interval coverage (80% and 95%) (i.e., the proportion of out-of-sample observations that fall within a prediction interval with an expected probability. For example, it is expected that 80% of points will fall within an 80% prediction interval.)",
+    "crumbs": [
+      "GitHub",
+      "Research Notes",
+      "Paper"
+    ]
+  },
+  {
+    "objectID": "ambulance_paper.html#workflow",
+    "href": "ambulance_paper.html#workflow",
+    "title": "Paper",
+    "section": "Workflow",
+    "text": "Workflow\n\n\n\n\nStage 1: Screening\nUsing daily counts for the whole-trust (SWAST), all candidate models and the naive benchmark were fit on the training set and evaluated on the validation set.\nModel selection used rolling-origin time series cross-validation with a 7-day stride, forecasting up to a 365-day horizon (27 folds).\nThe top 2 models were selected based on MASE and prediction interval coverage, relative to the naive model.\n\n\nStage 2: Elite screening\nThe top 2 models were carried forward.\nSWAST data were disaggregated into 7 regional (sub-trust) time series, and the models were refit and re-evaluated on each region.\nForecasting an 84-day horizon, with enough data for 67 validation folds.\n\n\nStage 3: Simulated forecast setting\nThe single best-performing model was carried forward.\nIt was tested on the held-out test set (not validation) across the 7 regional series, generating forecasts for a horizon of 7 to 84 days. This produced a distribution of MASE and coverage values across horizons and regions.\n\n\nStage 4: External evaluation\nThe selected model was then tested on 13 independent external time series (from other ambulance trusts), each split into training, validation, and test sets, to confirm the benchmark generalises beyond SWAST.",
+    "crumbs": [
+      "GitHub",
+      "Research Notes",
+      "Paper"
+    ]
+  },
+  {
+    "objectID": "ambulance_paper.html#results",
+    "href": "ambulance_paper.html#results",
+    "title": "Paper",
+    "section": "Results",
+    "text": "Results\nIn stage 1, the best models were Prophet (model 7) and Prophet-Regression with ARIMA errors ensemble (model 13).\nIn stage 2, the MASE was similar for the models for the sub-regions, but the median prediction interval coverage was more consistent for the ensemble than for Prophet.",
+    "crumbs": [
+      "GitHub",
+      "Research Notes",
+      "Paper"
     ]
   },
   {
@@ -468,94 +511,51 @@
     ]
   },
   {
-    "objectID": "ambulance_paper.html",
-    "href": "ambulance_paper.html",
-    "title": "Paper",
+    "objectID": "ambulance_notebook.html",
+    "href": "ambulance_notebook.html",
+    "title": "Notebook",
     "section": "",
-    "text": "Monks, T., Harper, A., Allen, M. et al. Forecasting the daily demand for emergency medical ambulances in England and Wales: a benchmark model and external validation. BMC Med Inform Decis Mak 23, 117 (2023). https://doi.org/10.1186/s12911-023-02218-z.\nhttps://github.com/TomMonks/swast-benchmarking\nhttps://github.com/TomMonks/swast-forecast-tool",
+    "text": "Daily count of:\n\nIncidents (Incidents).\nResponses (Responses).\nCalls (Calls and Calls_Other).\nSickness (Sickness).\nUnplanned absence (Unplanned).\n\nFor the whole trust ['Trust'] and for each region ['Gloucestershire', 'BNSSG', 'Cornwall', 'Dorset', 'BSW', 'Somerset', 'Devon'].\n\n\n\nBank holidays and school holiday dates per region, plus lower-upper window defining how many days before/after holiday the effect should be felt.",
     "crumbs": [
       "GitHub",
       "Research Notes",
-      "Paper"
+      "Notebook"
     ]
   },
   {
-    "objectID": "ambulance_paper.html#paper-and-github-repositories",
-    "href": "ambulance_paper.html#paper-and-github-repositories",
-    "title": "Paper",
+    "objectID": "ambulance_notebook.html#data",
+    "href": "ambulance_notebook.html#data",
+    "title": "Notebook",
     "section": "",
-    "text": "Monks, T., Harper, A., Allen, M. et al. Forecasting the daily demand for emergency medical ambulances in England and Wales: a benchmark model and external validation. BMC Med Inform Decis Mak 23, 117 (2023). https://doi.org/10.1186/s12911-023-02218-z.\nhttps://github.com/TomMonks/swast-benchmarking\nhttps://github.com/TomMonks/swast-forecast-tool",
+    "text": "Daily count of:\n\nIncidents (Incidents).\nResponses (Responses).\nCalls (Calls and Calls_Other).\nSickness (Sickness).\nUnplanned absence (Unplanned).\n\nFor the whole trust ['Trust'] and for each region ['Gloucestershire', 'BNSSG', 'Cornwall', 'Dorset', 'BSW', 'Somerset', 'Devon'].\n\n\n\nBank holidays and school holiday dates per region, plus lower-upper window defining how many days before/after holiday the effect should be felt.",
     "crumbs": [
       "GitHub",
       "Research Notes",
-      "Paper"
+      "Notebook"
     ]
   },
   {
-    "objectID": "ambulance_paper.html#data",
-    "href": "ambulance_paper.html#data",
-    "title": "Paper",
-    "section": "Data",
-    "text": "Data\nDaily count of emergency calls that resulted in ambulance dispatch.\nScreened time series for anomalies, then divided:\n\nTraining (1 January 2013 to 30 June 2017, n=1279).\nValidation (1 July 2017 to 31 December 2018, n=549).\nTest (1 January 2019 to 31 December 2019, n=365).\n\nThere appears to be an error in the paper dates. It says validation ends 31 January 2018, but have confirmed from notebook that it is December.",
-    "crumbs": [
-      "GitHub",
-      "Research Notes",
-      "Paper"
-    ]
-  },
-  {
-    "objectID": "ambulance_paper.html#models",
-    "href": "ambulance_paper.html#models",
-    "title": "Paper",
+    "objectID": "ambulance_notebook.html#models",
+    "href": "ambulance_notebook.html#models",
+    "title": "Notebook",
     "section": "Models",
-    "text": "Models\nNaive benchmark: Seasonal Naive method - using the most recent observation from the same day of the week and carrying it forward (e.g., if forecasting next Tuesday, use the observation from the most recent Tuesday as the predicted value).\nCandidate models:\n\nHolt-Winters Exponential Smoothing\nAutomatic Autoregressive Integrated Moving Average (autoARIMA)\nLagged regression (autoregression) with holidays and seasonal indexes\nLagged regularised regression (elastic-net) with seasonal indexes\nRegression with holidays and ARIMA errors\nRegression with holidays, seasonal indexes and ARIMA errors\nHarmonic Regression (fourier terms) with holidays\nSingular Spectrum Analysis\nFacebook Prophet\nTrigonometric seasonality, Box-Cox transformation (TBATS)\nComb: Simple Exponential Smoothing, Linear Trend, damped trend\nEnsemble of:\n\nHolt-Winters Exponental Smoothing (1).\nRegression with holiday and ARIMA errors (5).\n\nEnsemble of:\n\nRegression with holiday and ARIMA errors (5).\nFacebook Prophet (9).\n\nEnsemble of:\n\nHolt-Winters Exponential Smoothing (1).\nRegression with holidays and ARIMA errors (5).\nFacebook Prophet (9)\n\n\nThere appears to be some errors in the table in the paper. The above list of candidates was corrected based on the descriptions from the notebooks. In the paper, it says model 12 is actually 1+2 (not 1+5), and that model 13 is 5+7 (not 5+9).",
+    "text": "Models\n\n\n\n\nProphet\npredict_prophet_stf\n\nchangepoint_range is 1 for responses and 0.8 for other outcomes.\nchangepoint_prior_scale is 0.5 for responses and 0.05 for other outcomes.\nWeekly and yearly seasonality.\n\n\n\nEnsemble\ndefault_ensemble\nARIMA model within the ensemble (ProphetARIMAEnsemble, get_best_arima_parameters):\n\nRegression with ARIMA errors.\nNon-seasonal order (p,d,q) = (1,1,3): 1 AR term, first-order differencing, 3 MA terms.\nSeasonal order (P,D,Q,m) = (1,0,1,7): weekly seasonality with 1 seasonal AR term, 1 seasonal MA term, and no seasonal differencing.\nSingle binary holiday dummy flags whether a date falls in a holiday window. Collapses all holidays (e.g., New Years Day, Easter, Bank Holiday) into one undifferentiated effect rather than modelling each holiday type separately.\nenforce_stationarity=False.\n\nThe point forecast error (y_hat) and prediction intervals (yhat_lower_95 and yhat_upper_95) are determined by finding the mean of the Prophet and ARIMA results.\ndf['yhat'] = (df['prophet_mean'].values + df['arima_mean'].values ) / 2\ndf['yhat_lower_95'] = (df['prophet_lower_95'].values + df['arima_lower_95'].values ) / 2\ndf['yhat_upper_95'] = (df['prophet_upper_95'].values + df['arima_upper_95'].values ) / 2",
     "crumbs": [
       "GitHub",
       "Research Notes",
-      "Paper"
+      "Notebook"
     ]
   },
   {
-    "objectID": "ambulance_paper.html#evaluation",
-    "href": "ambulance_paper.html#evaluation",
-    "title": "Paper",
-    "section": "Evaluation",
-    "text": "Evaluation\nPoint forecast error:\n\nMean Absolute Scaled Error (MASE)\n\nEasy to understand.\nRelative so can compare across ambulance trusts.\nScaled the out of sample mean absolute error by the equivalent one-step within-sample error from a Seasonal Naive model.\n\nSymmetric Mean Absolute Percentage Error (sMAPE)\nRoot Mean Absolute Squared Error (RMSE)\n\nAs it has been used elsewhere, but can only be used in the context of the specific time series.\n\n\nPrediction interval coverage (80% and 95%) (i.e., the proportion of out-of-sample observations that fall within a prediction interval with an expected probability. For example, it is expected that 80% of points will fall within an 80% prediction interval.)",
+    "objectID": "ambulance_notebook.html#forecast",
+    "href": "ambulance_notebook.html#forecast",
+    "title": "Notebook",
+    "section": "Forecast",
+    "text": "Forecast\n42-day-ahead forecast. Starting point is last Monday (i.e., next Monday, minus seven days).\nResponses and incidents are forecast for each region and for whole trust. Calls, sickness and unplanned absence are all only forecast at the trust level.\nThe forecast dataframe contains:\n\nARIMA results for Calls and Responses.\nEnsemble results for all other outcomes.",
     "crumbs": [
       "GitHub",
       "Research Notes",
-      "Paper"
+      "Notebook"
     ]
-  },
-  {
-    "objectID": "ambulance_paper.html#workflow",
-    "href": "ambulance_paper.html#workflow",
-    "title": "Paper",
-    "section": "Workflow",
-    "text": "Workflow\n\n\n\n\nStage 1: Screening\nUsing daily counts for the whole-trust (SWAST), all candidate models and the naive benchmark were fit on the training set and evaluated on the validation set.\nModel selection used rolling-origin time series cross-validation with a 7-day stride, forecasting up to a 365-day horizon (27 folds).\nThe top 2 models were selected based on MASE and prediction interval coverage, relative to the naive model.\n\n\nStage 2: Elite screening\nThe top 2 models were carried forward.\nSWAST data were disaggregated into 7 regional (sub-trust) time series, and the models were refit and re-evaluated on each region.\nForecasting an 84-day horizon, with enough data for 67 validation folds.\n\n\nStage 3: Simulated forecast setting\nThe single best-performing model was carried forward.\nIt was tested on the held-out test set (not validation) across the 7 regional series, generating forecasts for a horizon of 7 to 84 days. This produced a distribution of MASE and coverage values across horizons and regions.\n\n\nStage 4: External evaluation\nThe selected model was then tested on 13 independent external time series (from other ambulance trusts), each split into training, validation, and test sets, to confirm the benchmark generalises beyond SWAST.",
-    "crumbs": [
-      "GitHub",
-      "Research Notes",
-      "Paper"
-    ]
-  },
-  {
-    "objectID": "ambulance_paper.html#results",
-    "href": "ambulance_paper.html#results",
-    "title": "Paper",
-    "section": "Results",
-    "text": "Results\nIn stage 1, the best models were Prophet (model 7) and Prophet-Regression with ARIMA errors ensemble (model 13).\nIn stage 2, the MASE was similar for the models for the sub-regions, but the median prediction interval coverage was more consistent for the ensemble than for Prophet.",
-    "crumbs": [
-      "GitHub",
-      "Research Notes",
-      "Paper"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Forecasting: Theory and Research Notes",
-    "section": "",
-    "text": "Author: Amy Heather \nThis site contains:\n\nTheory: Beginner friendly introduction to forecasting, including ARIMA and Prophet. Draws heavily on a range of existing resources (cited within).\nResearch notes: Describes existing research with the South Western Ambulance Service NHS Foundation Trust (SWASFT) and plans for ongoing work."
   }
 ]

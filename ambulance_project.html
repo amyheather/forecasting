@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9a805087ab83cad7e60272d68a3f1f35.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3fe26dbaf5b310fa9be9d355b96116bd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -268,9 +268,72 @@ background-size: cover;
 <ul>
 <li>Improved ensemble. Prophet prediction - get a time series of errors If you subtracted the error from your forecast, you would true result Hence, lets train an ARIMA model on those errors, and forecast the error in our forecast, alongside our actual forecast If we then add our forecast + our predicted error in the forecast, hopefully gives you a better prediction.</li>
 <li>London Ambulance Service might be doing something similar… Generalised additive model.</li>
-<li>Bahan Professor Cardiff has probably done some good stuff around forecasting in R that we could check out… open, R, Rob Heindman.</li>
+<li>Professor Bahman Rostami-Tabar has probably done some good stuff around forecasting in R that we could check out… open, R, Rob Hyndman.</li>
 </ul>
+<p>ARIMAX: ARIMA with exogenous regressors</p>
+<p>Prophet add_regressor</p>
+<p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7087605/" class="uri">https://pmc.ncbi.nlm.nih.gov/articles/PMC7087605/</a> and <a href="https://link.springer.com/article/10.1007/s00484-023-02435-1" class="uri">https://link.springer.com/article/10.1007/s00484-023-02435-1</a></p>
 </blockquote>
+<p>First:</p>
+<ul>
+<li>ARIMA 1- to 7-day forecast.</li>
+<li>ARIMA with actual average temperature, forecast average temperature, and /or relative humidity. They find actual temp best, forecast temp pretty similar, and that adding humidity didn’t improve.</li>
+</ul>
+<p>Second:</p>
+<ul>
+<li>Develop biometeorological indexes which is a single variable composed of multiple weather factors</li>
+<li>In 1- to 7-day ARIMA forecasts</li>
+<li>Simple average temperature performed better.</li>
+</ul>
+<p>Take-home: Temperature… humidity… rainfall… wind… may actually be ok with just temperature potentially, don’t know if will need all these different ones or not.</p>
+<p><a href="https://bmjopen.bmj.com/content/2/4/e001074" class="uri">https://bmjopen.bmj.com/content/2/4/e001074</a> and <a href="https://www.sciencedirect.com/science/article/pii/S0048969719350387?via%3Dihub" class="uri">https://www.sciencedirect.com/science/article/pii/S0048969719350387?via%3Dihub</a> and <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12117535/" class="uri">https://pmc.ncbi.nlm.nih.gov/articles/PMC12117535/</a></p>
+<ul>
+<li>Heat has immediate short-lasting effect
+<ul>
+<li>On number of ambulance attendances in Australia (0-1 days lag)… 1.17% increase per 1C over threshold</li>
+<li>On number of ambulance calls in China (0-30h lag).</li>
+<li>On ambulance dispatches in Czechia (up to 2 days).</li>
+</ul></li>
+<li>Cold has delayed, longer-lasting effect
+<ul>
+<li>On number of ambulance attendances in Australia (2-15 days lag)… 1.3% per 1C below threshold</li>
+<li>On number of ambulance calls in China (50-170h lag).</li>
+<li>On ambulance dispatches in Czechia (up to 3 weeks).</li>
+</ul></li>
+</ul>
+<p>Takehome: Explore adding lagged temperature (i.e., temp from 1, 2, 3, - 14 days ago), not just temperature on that day alone.</p>
+<p>All use DLNM. Takehome: Good to use DLNM for this analysis. Distributed Lag Non-Linear Models (DLNM)… DLNM framework… R dlnm package… could inform which lag features to include in the models…</p>
+<p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12117535/" class="uri">https://pmc.ncbi.nlm.nih.gov/articles/PMC12117535/</a> and <a href="https://journals.ametsoc.org/view/journals/wcas/15/3/WCAS-D-22-0046.1.xml" class="uri">https://journals.ametsoc.org/view/journals/wcas/15/3/WCAS-D-22-0046.1.xml</a></p>
+<ul>
+<li>Heatwaves have cumulative added effect on top of just temperature on ambulance dispatches in Czech study</li>
+<li>Increased risk of cardiovascular ambulance dispatches on heatwave days</li>
+</ul>
+<p>Takehome: Explicit heatwave modelling? E.g. Binary heatwave flag if days where max temp &gt; X, for &gt; 2 days.</p>
+<p><a href="https://journals.sagepub.com/doi/10.1177/10946705241232169" class="uri">https://journals.sagepub.com/doi/10.1177/10946705241232169</a></p>
+<p>Forecast of emergency medical serices, but instead of having separate demand forecasts for national v.s. regional v.s., sub-regional, it is doing some hierarchical grouped stuff.</p>
+<p><a href="https://researchportal.ulisboa.pt/en/publications/short-term-forecasting-of-emergency-medical-services-demand-explo/" class="uri">https://researchportal.ulisboa.pt/en/publications/short-term-forecasting-of-emergency-medical-services-demand-explo/</a></p>
+<p>Using machine learning to forecast EMS demand</p>
+<p><strong>Weather data</strong></p>
+<ul>
+<li>For the 7-day horizon, Met Office forecast temperatures (available up to 8 days ahead via the Weather DataHub at 2 km resolution or the free Open-Meteo UK Met Office API)</li>
+<li>Historical:
+<ul>
+<li>European Climate Assessment &amp; Dataset</li>
+<li>Open-Meteo Historical API</li>
+</ul></li>
+<li>Forecast:
+<ul>
+<li>Met Office Weather DataHub</li>
+<li>Open-Meteo UK Met Office API</li>
+<li>ECMWF ENS</li>
+</ul></li>
+</ul>
+<p><strong>Remember:</strong> Weather forecast day 1-3 more accurate, day 4-7 less so, will presumably contribute to prediction intervals, more uncertain later in forecast</p>
+<p><strong>Consider:</strong> We are accounting for seasonality. Adding temperature, it’s associated with seasonality, might be some kind of correlation/colinearity issue? Or is it ok?</p>
+<ul>
+<li><a href="https://github.com/facebook/prophet/issues/1017" class="uri">https://github.com/facebook/prophet/issues/1017</a>: Consider using deviation from the long-term daily average for that calendar date, rather than absolute temperature? Captures unusual warmth or cold? Or maybe that’s more relevant for longer forecast?</li>
+</ul>
+<p><strong>Consider:</strong> Instead of single average temp per region, an average weighted by population density in each region.</p>
 </section>
 <section id="prediction-intervals-in-long-term-forecasts" class="level2">
 <h2 class="anchored" data-anchor-id="prediction-intervals-in-long-term-forecasts">Prediction intervals in long term forecasts</h2>

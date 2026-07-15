@@ -96,7 +96,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9a805087ab83cad7e60272d68a3f1f35.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3fe26dbaf5b310fa9be9d355b96116bd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -314,7 +314,7 @@ background-size: cover;
 
 
 
-<div id="66915c63" class="cell" data-execution_count="1">
+<div id="abd16914" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prophet <span class="im">import</span> Prophet</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prophet.plot <span class="im">import</span> add_changepoints_to_plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -353,7 +353,7 @@ background-size: cover;
 </div>
 <p><strong>Logistic growth trend model</strong>. This is used when there is a maximum value that can’t be crossed (known as the “carrying capacity”). This model will start to flatten the trend as it approaches that value.</p>
 <p><span class="source-note">Code source: <span class="citation" data-cites="prophet_saturating">Meta (<a href="#ref-prophet_saturating" role="doc-biblioref">2026d</a>)</span></span></p>
-<div id="96e0d0b3" class="cell" data-execution_count="3">
+<div id="c8612709" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/facebook/prophet/"</span> <span class="op">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"main/examples/example_wp_log_R.csv"</span></span>
@@ -365,7 +365,7 @@ background-size: cover;
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>future[<span class="st">"cap"</span>] <span class="op">=</span> <span class="fl">8.5</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>forecast <span class="op">=</span> m.predict(future)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="5516aefe" class="cell" data-execution_count="4">
+<div id="9126c92b" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> m.plot(forecast)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -391,7 +391,7 @@ background-size: cover;
 </ol>
 <p>This is a Bayesian approach: rather than deciding in advance how many changepoints are real, Prophet starts with a prior belief (most changepoints don’t matter) and updates it using the data. The Laplace prior is closely related to L1 regularisation (as in Lasso regression). Both shrink small, uncertain effects toward zero while leaving large, well-supported effects largely intact. In practice, most potential changepoints end up negligible, and only a handful with strong evidence shape the trend, preventing it from reacting to minor fluctuations.</p>
 <p><span class="source-note">Code source: <span class="citation" data-cites="prophet_start">Meta (<a href="#ref-prophet_start" role="doc-biblioref">2026c</a>)</span>, <span class="citation" data-cites="prophet_changepoints">Meta (<a href="#ref-prophet_changepoints" role="doc-biblioref">2026f</a>)</span></span></p>
-<div id="01539949" class="cell" data-execution_count="5">
+<div id="dcb0d87a" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/facebook/prophet/"</span> <span class="op">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"main/examples/example_wp_log_peyton_manning.csv"</span></span>
@@ -401,7 +401,7 @@ background-size: cover;
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>future <span class="op">=</span> m.make_future_dataframe(periods<span class="op">=</span><span class="dv">365</span>)</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>forecast <span class="op">=</span> m.predict(future)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="3383bba5" class="cell" data-execution_count="6">
+<div id="1db80f0c" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> m.plot(forecast)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> add_changepoints_to_plot(fig.gca(), m, forecast)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -446,7 +446,7 @@ background-size: cover;
 <section id="example-of-forecast-with-weekly-and-yearly-seasonality" class="level3">
 <h3 class="anchored" data-anchor-id="example-of-forecast-with-weekly-and-yearly-seasonality">Example of forecast with weekly and yearly seasonality</h3>
 <p><span class="source-note">Source: <span class="citation" data-cites="prophet_seasonality">Meta (<a href="#ref-prophet_seasonality" role="doc-biblioref">2026e</a>)</span></span></p>
-<div id="ec07916f" class="cell" data-execution_count="7">
+<div id="ad7e162e" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/facebook/prophet/"</span> <span class="op">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"main/examples/example_wp_log_peyton_manning.csv"</span></span>
@@ -455,7 +455,7 @@ background-size: cover;
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>future <span class="op">=</span> m.make_future_dataframe(periods<span class="op">=</span><span class="dv">365</span>)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>forecast <span class="op">=</span> m.predict(future)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="d41149d0" class="cell" data-execution_count="8">
+<div id="34264125" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> m.plot_components(forecast)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -482,7 +482,7 @@ background-size: cover;
 <p>By default, Prophet fits additive seasonality. This means the seasonal effect is added to the trend to get the forecast, so the size of the seasonal effect is constant.</p>
 <p>If seasonality is not a constant additive factor, but instead growts with trend, this is <strong>multiplicative seasonality</strong>.</p>
 <p>In the example below, there is a clear yearly cycle, but with additive seasonality, the model forecast (blue) fits poorly against the actual values (black). The seasonal effect is too large near the start of the series and too small by the end.</p>
-<div id="a7f858e0" class="cell" data-execution_count="9">
+<div id="d862d4e6" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/facebook/prophet/"</span> <span class="op">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"main/examples/example_air_passengers.csv"</span></span>
@@ -492,7 +492,7 @@ background-size: cover;
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>future <span class="op">=</span> m.make_future_dataframe(<span class="dv">50</span>, freq<span class="op">=</span><span class="st">"MS"</span>)</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>forecast <span class="op">=</span> m.predict(future)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="896134c1" class="cell" data-execution_count="10">
+<div id="71ca15b7" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> m.plot(forecast)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -503,13 +503,13 @@ background-size: cover;
 </div>
 </div>
 <p>This can be corrected by setting <code>seasonality_mode="multiplicative"</code>, which multiplies the trend by the seasonal component instead of adding it.</p>
-<div id="37a52675" class="cell" data-execution_count="11">
+<div id="b34ce89d" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> Prophet(seasonality_mode<span class="op">=</span><span class="st">"multiplicative"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>m.fit(df)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>future <span class="op">=</span> m.make_future_dataframe(<span class="dv">50</span>, freq<span class="op">=</span><span class="st">"MS"</span>)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>forecast <span class="op">=</span> m.predict(future)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="d47de1ce" class="cell" data-execution_count="12">
+<div id="53c72c8c" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> m.plot(forecast)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
