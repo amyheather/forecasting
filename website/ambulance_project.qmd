@@ -29,11 +29,27 @@ SWAST also have an API that can download the seasonal disease info from UKHSA ev
 
 *Additional notes: Relationship potentially changed since COVID? Also, Nav shared <https://doi.org/10.1057/jors.2011.160>.*
 
+> Tom said we need to think about temperature data... if you are training on actual data, but then using forecast in forecast… forecast comes with uncertainty… incorporate? Paul Harper Cardiff may have done some stuff around this, Bayesian, emergency admissions.
+>
+> Also, Tom gave ideas around improved models. Suggested worry less about point forecast, and focus more on trying to shrink prediction intervals while maintaining good coverage.
+>
+> Model ideas...
+>
+> * Improved ensemble. Prophet prediction - get a time series of errors If you subtracted the error from your forecast, you would true result Hence, lets train an ARIMA model on those errors, and forecast the error in our forecast, alongside our actual forecast If we then add our forecast + our predicted error in the forecast, hopefully gives you a better prediction.
+> * London Ambulance Service might be doing something similar… Generalised additive model.
+> * Bahan Professor Cardiff has probably done some good stuff around forecasting in R that we could check out... open, R, Rob Heindman.
+
 ## Prediction intervals in long term forecasts
 
 Want to improve prediction/uncertainty intervals for longer forecasts (e.g., several months).
 
-Consider conformal prediction.
+> Tom spoke about how current ensemble approach of just taking a mean of prediction intervals could be improved. Suggestions of things to look into:
+> 
+> * Quantile regression...
+> * Bayesian...
+> * Conformal prediction - take initial predict set and calibrate on out-of-sample validation data
+> * Bootstrapping - repeated sampling historical residuals, generate forecast new for each sample, evaluate variance across iterations to form interval.
+> * Might be called "sample paths" in Hyndman.
 
 ## Handling COVID data
 

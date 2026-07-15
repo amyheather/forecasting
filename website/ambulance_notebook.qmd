@@ -74,19 +74,3 @@ The forecast dataframe contains:
 
 * ARIMA results for `Calls` and `Responses`.
 * Ensemble results for all other outcomes.
-
-<!-- TODO:
-
-Why is ARIMA for those and Ensemble for others?
-
-How chose to use these models?
-
-How chose ARIMA param?
-
-How perform validation?
-
-Why chosen forecast horizon?
-
-What is the new request - shorter horizon?
-
--->
